@@ -3,7 +3,6 @@ import type { Tables, TablesInsert, TablesUpdate } from "@/integrations/supabase
 
 type BlogPost = Tables<"blog_posts">;
 type BlogCategory = Tables<"blog_categories">;
-type BlogTag = Tables<"blog_tags">;
 
 export interface BlogPostInput {
   title: string;

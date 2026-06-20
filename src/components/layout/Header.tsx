@@ -52,8 +52,9 @@ export default function Header() {
           id,
           title,
           slug,
+          content,
           category_id,
-          blog_categories!inner (
+          blog_categories (
             id,
             name,
             slug
@@ -73,7 +74,8 @@ export default function Header() {
   }, []);
 
   const categories = blogPosts
-    .map((post) => post.blog_categories)
+    .map((post) => (post as any).blog_categories)
+    .filter((category) => category != null)
     .filter((category, index, self) =>
       index === self.findIndex((c: any) => c?.slug === category?.slug)
     );

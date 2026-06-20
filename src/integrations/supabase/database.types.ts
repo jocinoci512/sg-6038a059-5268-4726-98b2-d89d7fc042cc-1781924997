@@ -15,53 +15,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      audit_logs: {
-        Row: {
-          action: string
-          created_at: string | null
-          id: string
-          ip_address: string | null
-          new_data: Json | null
-          old_data: Json | null
-          record_id: string | null
-          table_name: string | null
-          user_agent: string | null
-          user_id: string | null
-        }
-        Insert: {
-          action: string
-          created_at?: string | null
-          id?: string
-          ip_address?: string | null
-          new_data?: Json | null
-          old_data?: Json | null
-          record_id?: string | null
-          table_name?: string | null
-          user_agent?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          action?: string
-          created_at?: string | null
-          id?: string
-          ip_address?: string | null
-          new_data?: Json | null
-          old_data?: Json | null
-          record_id?: string | null
-          table_name?: string | null
-          user_agent?: string | null
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "audit_logs_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       blog_categories: {
         Row: {
           created_at: string | null
@@ -94,36 +47,6 @@ export type Database = {
           slug?: string
         }
         Relationships: []
-      }
-      blog_post_tags: {
-        Row: {
-          post_id: string
-          tag_id: string
-        }
-        Insert: {
-          post_id: string
-          tag_id: string
-        }
-        Update: {
-          post_id?: string
-          tag_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "blog_post_tags_post_id_fkey"
-            columns: ["post_id"]
-            isOneToOne: false
-            referencedRelation: "blog_posts"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "blog_post_tags_tag_id_fkey"
-            columns: ["tag_id"]
-            isOneToOne: false
-            referencedRelation: "blog_tags"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       blog_posts: {
         Row: {
@@ -203,27 +126,6 @@ export type Database = {
           },
         ]
       }
-      blog_tags: {
-        Row: {
-          created_at: string | null
-          id: string
-          name: string
-          slug: string
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          name: string
-          slug: string
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          name?: string
-          slug?: string
-        }
-        Relationships: []
-      }
       case_activities: {
         Row: {
           activity_type: string
@@ -266,118 +168,6 @@ export type Database = {
           {
             foreignKeyName: "case_activities_user_id_fkey"
             columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      case_documents: {
-        Row: {
-          case_id: string
-          created_at: string | null
-          description: string | null
-          document_type: string | null
-          file_name: string
-          file_path: string
-          file_size: number | null
-          file_type: string
-          id: string
-          uploaded_by: string
-        }
-        Insert: {
-          case_id: string
-          created_at?: string | null
-          description?: string | null
-          document_type?: string | null
-          file_name: string
-          file_path: string
-          file_size?: number | null
-          file_type: string
-          id?: string
-          uploaded_by: string
-        }
-        Update: {
-          case_id?: string
-          created_at?: string | null
-          description?: string | null
-          document_type?: string | null
-          file_name?: string
-          file_path?: string
-          file_size?: number | null
-          file_type?: string
-          id?: string
-          uploaded_by?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "case_documents_case_id_fkey"
-            columns: ["case_id"]
-            isOneToOne: false
-            referencedRelation: "cases"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "case_documents_uploaded_by_fkey"
-            columns: ["uploaded_by"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      case_messages: {
-        Row: {
-          case_id: string
-          created_at: string | null
-          id: string
-          is_internal: boolean | null
-          is_read: boolean | null
-          message: string
-          recipient_id: string
-          sender_id: string
-          subject: string | null
-        }
-        Insert: {
-          case_id: string
-          created_at?: string | null
-          id?: string
-          is_internal?: boolean | null
-          is_read?: boolean | null
-          message: string
-          recipient_id: string
-          sender_id: string
-          subject?: string | null
-        }
-        Update: {
-          case_id?: string
-          created_at?: string | null
-          id?: string
-          is_internal?: boolean | null
-          is_read?: boolean | null
-          message?: string
-          recipient_id?: string
-          sender_id?: string
-          subject?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "case_messages_case_id_fkey"
-            columns: ["case_id"]
-            isOneToOne: false
-            referencedRelation: "cases"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "case_messages_recipient_id_fkey"
-            columns: ["recipient_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "case_messages_sender_id_fkey"
-            columns: ["sender_id"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
@@ -557,62 +347,6 @@ export type Database = {
         }
         Relationships: []
       }
-      media_library: {
-        Row: {
-          alt_text: string | null
-          caption: string | null
-          created_at: string | null
-          file_name: string
-          file_path: string
-          file_size: number | null
-          file_type: string
-          folder: string | null
-          height: number | null
-          id: string
-          mime_type: string | null
-          uploaded_by: string
-          width: number | null
-        }
-        Insert: {
-          alt_text?: string | null
-          caption?: string | null
-          created_at?: string | null
-          file_name: string
-          file_path: string
-          file_size?: number | null
-          file_type: string
-          folder?: string | null
-          height?: number | null
-          id?: string
-          mime_type?: string | null
-          uploaded_by: string
-          width?: number | null
-        }
-        Update: {
-          alt_text?: string | null
-          caption?: string | null
-          created_at?: string | null
-          file_name?: string
-          file_path?: string
-          file_size?: number | null
-          file_type?: string
-          folder?: string | null
-          height?: number | null
-          id?: string
-          mime_type?: string | null
-          uploaded_by?: string
-          width?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "media_library_uploaded_by_fkey"
-            columns: ["uploaded_by"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       newsletter_subscribers: {
         Row: {
           confirmation_token: string | null
@@ -655,69 +389,6 @@ export type Database = {
         }
         Relationships: []
       }
-      pages: {
-        Row: {
-          content: Json
-          created_at: string | null
-          created_by: string
-          id: string
-          is_published: boolean | null
-          seo_description: string | null
-          seo_keywords: string[] | null
-          seo_title: string | null
-          slug: string
-          template: string | null
-          title: string
-          updated_at: string | null
-          updated_by: string | null
-        }
-        Insert: {
-          content: Json
-          created_at?: string | null
-          created_by: string
-          id?: string
-          is_published?: boolean | null
-          seo_description?: string | null
-          seo_keywords?: string[] | null
-          seo_title?: string | null
-          slug: string
-          template?: string | null
-          title: string
-          updated_at?: string | null
-          updated_by?: string | null
-        }
-        Update: {
-          content?: Json
-          created_at?: string | null
-          created_by?: string
-          id?: string
-          is_published?: boolean | null
-          seo_description?: string | null
-          seo_keywords?: string[] | null
-          seo_title?: string | null
-          slug?: string
-          template?: string | null
-          title?: string
-          updated_at?: string | null
-          updated_by?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "pages_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "pages_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -725,6 +396,10 @@ export type Database = {
           email: string | null
           full_name: string | null
           id: string
+          is_active: boolean | null
+          last_login: string | null
+          phone: string | null
+          role: string
           updated_at: string | null
         }
         Insert: {
@@ -733,6 +408,10 @@ export type Database = {
           email?: string | null
           full_name?: string | null
           id: string
+          is_active?: boolean | null
+          last_login?: string | null
+          phone?: string | null
+          role?: string
           updated_at?: string | null
         }
         Update: {
@@ -741,50 +420,13 @@ export type Database = {
           email?: string | null
           full_name?: string | null
           id?: string
+          is_active?: boolean | null
+          last_login?: string | null
+          phone?: string | null
+          role?: string
           updated_at?: string | null
         }
         Relationships: []
-      }
-      website_settings: {
-        Row: {
-          category: string | null
-          created_at: string | null
-          description: string | null
-          id: string
-          key: string
-          updated_at: string | null
-          updated_by: string | null
-          value: Json
-        }
-        Insert: {
-          category?: string | null
-          created_at?: string | null
-          description?: string | null
-          id?: string
-          key: string
-          updated_at?: string | null
-          updated_by?: string | null
-          value: Json
-        }
-        Update: {
-          category?: string | null
-          created_at?: string | null
-          description?: string | null
-          id?: string
-          key?: string
-          updated_at?: string | null
-          updated_by?: string | null
-          value?: Json
-        }
-        Relationships: [
-          {
-            foreignKeyName: "website_settings_updated_by_fkey"
-            columns: ["updated_by"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
       }
     }
     Views: {

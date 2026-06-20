@@ -2,12 +2,8 @@ import { supabase } from "@/integrations/supabase/client";
 import type { TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
 
 /**
- * Helper functions for common Supabase operations
+ * Case Management Helpers
  */
-
-// ============================================================================
-// CASE MANAGEMENT HELPERS
-// ============================================================================
 
 export async function createCase(caseData: Omit<TablesInsert<"cases">, "case_number">) {
   try {
@@ -38,15 +34,31 @@ export async function createCase(caseData: Omit<TablesInsert<"cases">, "case_num
 export async function getCasesByClient(clientId: string) {
   try {
     const { data, error } = await supabase
-      .from('cases')
-      .select('*')
-      .eq('client_id', clientId)
-      .order('created_at', { ascending: false });
+      .from("cases")
+      .select("*")
+      .eq("client_id", clientId)
+      .order("created_at", { ascending: false });
 
     if (error) throw error;
     return { data, error: null };
   } catch (error) {
-    console.error('Get cases error:', error);
+    console.error('Get cases by client error:', error);
+    return { data: null, error };
+  }
+}
+
+export async function getCaseById(caseId: string) {
+  try {
+    const { data, error } = await supabase
+      .from("cases")
+      .select("*")
+      .eq("id", caseId)
+      .single();
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    console.error('Get case by ID error:', error);
     return { data: null, error };
   }
 }
@@ -70,36 +82,6 @@ export async function updateCaseStatus(caseId: string, status: string) {
   }
 }
 
-export async function logCaseActivity(
-  caseId: string,
-  userId: string,
-  activityType: string,
-  title: string,
-  description?: string,
-  metadata?: any
-) {
-  try {
-    const { data, error } = await supabase
-      .from('case_activities')
-      .insert({
-        case_id: caseId,
-        user_id: userId,
-        activity_type: activityType,
-        title,
-        description,
-        metadata
-      })
-      .select()
-      .single();
-
-    if (error) throw error;
-    return { data, error: null };
-  } catch (error) {
-    console.error('Log case activity error:', error);
-    return { data: null, error };
-  }
-}
-
 export async function addCaseActivity(activityData: TablesInsert<"case_activities">) {
   try {
     const { data, error } = await supabase
@@ -116,65 +98,25 @@ export async function addCaseActivity(activityData: TablesInsert<"case_activitie
   }
 }
 
-// ============================================================================
-// BLOG MANAGEMENT HELPERS
-// ============================================================================
-
-export async function getPublishedBlogPosts(limit?: number) {
-  try {
-    let query = supabase
-      .from('blog_posts')
-      .select(`
-        *,
-        category:blog_categories(name, slug),
-        author:profiles(full_name)
-      `)
-      .eq('status', 'published')
-      .lte('published_at', new Date().toISOString())
-      .order('published_at', { ascending: false });
-
-    if (limit) {
-      query = query.limit(limit);
-    }
-
-    const { data, error } = await query;
-
-    if (error) throw error;
-    return { data, error: null };
-  } catch (error) {
-    console.error('Get blog posts error:', error);
-    return { data: null, error };
-  }
-}
-
-export async function getBlogPostBySlug(slug: string) {
+export async function getCaseActivities(caseId: string) {
   try {
     const { data, error } = await supabase
-      .from('blog_posts')
-      .select(`
-        *,
-        category:blog_categories(name, slug),
-        author:profiles(full_name)
-      `)
-      .eq('slug', slug)
-      .single();
+      .from("case_activities")
+      .select("*")
+      .eq("case_id", caseId)
+      .order("created_at", { ascending: false });
 
     if (error) throw error;
-
-    // Increment view count
-    if (data) {
-      await supabase
-        .from('blog_posts')
-        .update({ view_count: (data.view_count || 0) + 1 })
-        .eq('id', data.id);
-    }
-
     return { data, error: null };
   } catch (error) {
-    console.error('Get blog post error:', error);
+    console.error('Get case activities error:', error);
     return { data: null, error };
   }
 }
+
+/**
+ * Blog Management Helpers
+ */
 
 export async function incrementBlogViewCount(slug: string) {
   try {
@@ -204,9 +146,9 @@ export async function incrementBlogViewCount(slug: string) {
   }
 }
 
-// ============================================================================
-// NEWSLETTER HELPERS
-// ============================================================================
+/**
+ * Newsletter Management Helpers
+ */
 
 export async function subscribeNewsletter(email: string, fullName?: string, source?: string) {
   try {
@@ -236,9 +178,31 @@ export async function subscribeNewsletter(email: string, fullName?: string, sour
   }
 }
 
-// ============================================================================
-// CONTACT INQUIRY HELPERS
-// ============================================================================
+export async function unsubscribeNewsletter(email: string) {
+  try {
+    const updateData: TablesUpdate<"newsletter_subscribers"> = {
+      is_active: false,
+      unsubscribed_at: new Date().toISOString()
+    };
+
+    const { data, error } = await supabase
+      .from("newsletter_subscribers")
+      .update(updateData)
+      .eq("email", email)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    console.error('Unsubscribe newsletter error:', error);
+    return { data: null, error };
+  }
+}
+
+/**
+ * Contact Form Helpers
+ */
 
 export async function createContactInquiry(inquiryData: Omit<TablesInsert<"contact_inquiries">, "id" | "created_at">) {
   try {
@@ -261,67 +225,21 @@ export async function createContactInquiry(inquiryData: Omit<TablesInsert<"conta
   }
 }
 
-// ============================================================================
-// FAQ HELPERS
-// ============================================================================
-
-export async function getActiveFAQs() {
+export async function updateInquiryStatus(inquiryId: string, status: string) {
   try {
-    const { data, error } = await supabase
-      .from('faqs')
-      .select('*')
-      .eq('is_active', true)
-      .order('display_order', { ascending: true });
-
-    if (error) throw error;
-    return { data, error: null };
-  } catch (error) {
-    console.error('Get FAQs error:', error);
-    return { data: null, error };
-  }
-}
-
-// ============================================================================
-// WEBSITE SETTINGS HELPERS
-// ============================================================================
-
-export async function getWebsiteSetting(key: string) {
-  try {
-    const { data, error } = await supabase
-      .from("website_settings")
-      .select("value")
-      .eq("key", key)
-      .single();
-
-    if (error) throw error;
-    if (!data) return { data: null, error: null };
-
-    return { data: data.value, error: null };
-  } catch (error) {
-    console.error('Get website setting error:', error);
-    return { data: null, error };
-  }
-}
-
-export async function updateWebsiteSetting(key: string, value: any, userId?: string) {
-  try {
-    const updateData: TablesUpdate<"website_settings"> = {
-      value,
-      updated_by: userId || null,
-      updated_at: new Date().toISOString()
-    };
+    const updateData: TablesUpdate<"contact_inquiries"> = { status };
 
     const { data, error } = await supabase
-      .from("website_settings")
+      .from("contact_inquiries")
       .update(updateData)
-      .eq("key", key)
+      .eq("id", inquiryId)
       .select()
       .single();
 
     if (error) throw error;
     return { data, error: null };
   } catch (error) {
-    console.error('Update website setting error:', error);
+    console.error('Update inquiry status error:', error);
     return { data: null, error };
   }
 }
