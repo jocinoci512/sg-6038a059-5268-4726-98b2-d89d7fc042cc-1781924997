@@ -1,5 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
-import type { Tables } from "@/integrations/supabase/types";
+import type { Tables, TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
 
 type BlogPost = Tables<"blog_posts">;
 type BlogCategory = Tables<"blog_categories">;
@@ -102,9 +102,11 @@ export async function getBlogPostById(id: string) {
  */
 export async function createBlogPost(postData: BlogPostInput) {
   try {
+    const insertData: TablesInsert<"blog_posts"> = postData;
+
     const { data, error } = await supabase
       .from("blog_posts")
-      .insert(postData)
+      .insert(insertData)
       .select()
       .single();
 
@@ -121,12 +123,14 @@ export async function createBlogPost(postData: BlogPostInput) {
  */
 export async function updateBlogPost(id: string, updates: Partial<BlogPostInput>) {
   try {
+    const updateData: TablesUpdate<"blog_posts"> = {
+      ...updates,
+      updated_at: new Date().toISOString()
+    };
+
     const { data, error } = await supabase
       .from("blog_posts")
-      .update({
-        ...updates,
-        updated_at: new Date().toISOString()
-      })
+      .update(updateData)
       .eq("id", id)
       .select()
       .single();
@@ -188,10 +192,15 @@ export async function incrementViewCount(slug: string) {
       .single();
 
     if (fetchError) throw fetchError;
+    if (!post) throw new Error('Post not found');
+
+    const updateData: TablesUpdate<"blog_posts"> = {
+      view_count: (post.view_count || 0) + 1
+    };
 
     const { error } = await supabase
       .from("blog_posts")
-      .update({ view_count: (post.view_count || 0) + 1 })
+      .update(updateData)
       .eq("id", post.id);
 
     if (error) throw error;

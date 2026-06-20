@@ -19,6 +19,7 @@ import { Menu, MessageCircle, Search, FileText, Briefcase } from "lucide-react";
 import { useState, useEffect } from "react";
 import { getAllBlogPosts } from "@/services/cmsBlogService";
 import type { Tables } from "@/integrations/supabase/types";
+import { supabase } from "@/integrations/supabase/client";
 
 type BlogPost = Tables<"blog_posts">;
 
@@ -36,7 +37,7 @@ export default function Header() {
   const whatsappUrl = "https://wa.me/19405609662?text=Hello%2C%20I%20need%20help%20with%20a%20crypto%20fraud%20case.";
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [searchResults, setSearchResults] = useState<{
     blogs: BlogPost[];
     services: typeof SERVICES;
@@ -44,15 +45,32 @@ export default function Header() {
 
   // Load blog posts on mount
   useEffect(() => {
-    const loadBlogPosts = async () => {
-      const data = await getAllBlogPosts();
+    async function fetchBlogPosts() {
+      const { data } = await supabase
+        .from("blog_posts")
+        .select(`
+          *,
+          category:blog_categories(name, slug)
+        `)
+        .eq("status", "published")
+        .lte("published_at", new Date().toISOString())
+        .order("published_at", { ascending: false })
+        .limit(6);
+
       if (data) {
-        // Only include published posts
-        setBlogPosts(data.filter(post => post.status === "published"));
+        setBlogPosts(data);
       }
-    };
-    loadBlogPosts();
+    }
+
+    fetchBlogPosts();
   }, []);
+
+  const categories = blogPosts
+    .filter((post) => post.category)
+    .map((post) => post.category)
+    .filter((category, index, self) =>
+      index === self.findIndex((c) => c?.slug === category?.slug)
+    );
 
   // Search function
   useEffect(() => {

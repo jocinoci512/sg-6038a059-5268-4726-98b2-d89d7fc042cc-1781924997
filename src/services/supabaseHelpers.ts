@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import type { TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
 
 /**
  * Helper functions for common Supabase operations
@@ -8,35 +9,24 @@ import { supabase } from "@/integrations/supabase/client";
 // CASE MANAGEMENT HELPERS
 // ============================================================================
 
-export async function createCase(caseData: {
-  client_id: string;
-  title: string;
-  description: string;
-  case_type: string;
-  amount_involved?: number;
-  currency?: string;
-  blockchain_network?: string[];
-  wallet_addresses?: string[];
-  transaction_ids?: string[];
-}) {
+export async function createCase(caseData: Omit<TablesInsert<"cases">, "case_number">) {
   try {
-    // Generate case number
-    const { data: caseNumberData } = await supabase.rpc('generate_case_number');
-    
+    // Generate case number using database function
+    const { data: caseNumber } = await supabase.rpc('generate_case_number');
+
+    const insertData: TablesInsert<"cases"> = {
+      ...caseData,
+      case_number: caseNumber || `CASE-${Date.now()}`
+    };
+
     const { data, error } = await supabase
-      .from('cases')
-      .insert({
-        ...caseData,
-        case_number: caseNumberData,
-        status: 'submitted'
-      })
+      .from("cases")
+      .insert(insertData)
       .select()
       .single();
 
     if (error) throw error;
-
-    // Log activity
-    await logCaseActivity(data.id, caseData.client_id, 'status_change', 'Case Submitted', 'New case submitted for review');
+    if (!data) throw new Error('Failed to create case');
 
     return { data, error: null };
   } catch (error) {
@@ -61,20 +51,18 @@ export async function getCasesByClient(clientId: string) {
   }
 }
 
-export async function updateCaseStatus(caseId: string, status: string, userId: string, notes?: string) {
+export async function updateCaseStatus(caseId: string, status: string) {
   try {
+    const updateData: TablesUpdate<"cases"> = { status };
+
     const { data, error } = await supabase
-      .from('cases')
-      .update({ status })
-      .eq('id', caseId)
+      .from("cases")
+      .update(updateData)
+      .eq("id", caseId)
       .select()
       .single();
 
     if (error) throw error;
-
-    // Log activity
-    await logCaseActivity(caseId, userId, 'status_change', `Status Updated to ${status}`, notes || `Case status changed to ${status}`);
-
     return { data, error: null };
   } catch (error) {
     console.error('Update case status error:', error);
@@ -108,6 +96,22 @@ export async function logCaseActivity(
     return { data, error: null };
   } catch (error) {
     console.error('Log case activity error:', error);
+    return { data: null, error };
+  }
+}
+
+export async function addCaseActivity(activityData: TablesInsert<"case_activities">) {
+  try {
+    const { data, error } = await supabase
+      .from("case_activities")
+      .insert(activityData)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return { data, error: null };
+  } catch (error) {
+    console.error('Add case activity error:', error);
     return { data: null, error };
   }
 }
@@ -172,27 +176,55 @@ export async function getBlogPostBySlug(slug: string) {
   }
 }
 
+export async function incrementBlogViewCount(slug: string) {
+  try {
+    const { data: post, error: fetchError } = await supabase
+      .from("blog_posts")
+      .select("id, view_count")
+      .eq("slug", slug)
+      .single();
+
+    if (fetchError) throw fetchError;
+    if (!post) throw new Error('Blog post not found');
+
+    const updateData: TablesUpdate<"blog_posts"> = {
+      view_count: (post.view_count || 0) + 1
+    };
+
+    const { error } = await supabase
+      .from("blog_posts")
+      .update(updateData)
+      .eq("id", post.id);
+
+    if (error) throw error;
+    return { error: null };
+  } catch (error) {
+    console.error('Increment blog view count error:', error);
+    return { error };
+  }
+}
+
 // ============================================================================
 // NEWSLETTER HELPERS
 // ============================================================================
 
-export async function subscribeToNewsletter(email: string, fullName?: string, source?: string) {
+export async function subscribeNewsletter(email: string, fullName?: string, source?: string) {
   try {
+    const insertData: TablesInsert<"newsletter_subscribers"> = {
+      email,
+      full_name: fullName || null,
+      subscription_source: source || 'website'
+    };
+
     const { data, error } = await supabase
-      .from('newsletter_subscribers')
-      .insert({
-        email,
-        full_name: fullName,
-        subscription_source: source || 'footer',
-        is_active: true
-      })
+      .from("newsletter_subscribers")
+      .insert(insertData)
       .select()
       .single();
 
     if (error) {
-      // Check if already subscribed
       if (error.code === '23505') {
-        return { data: null, error: { message: 'Email already subscribed' } };
+        return { data: null, error: new Error('Email already subscribed') };
       }
       throw error;
     }
@@ -208,21 +240,16 @@ export async function subscribeToNewsletter(email: string, fullName?: string, so
 // CONTACT INQUIRY HELPERS
 // ============================================================================
 
-export async function createContactInquiry(inquiryData: {
-  full_name: string;
-  email: string;
-  phone?: string;
-  subject?: string;
-  message: string;
-  form_source?: string;
-}) {
+export async function createContactInquiry(inquiryData: Omit<TablesInsert<"contact_inquiries">, "id" | "created_at">) {
   try {
+    const insertData: TablesInsert<"contact_inquiries"> = {
+      ...inquiryData,
+      status: 'new'
+    };
+
     const { data, error } = await supabase
-      .from('contact_inquiries')
-      .insert({
-        ...inquiryData,
-        status: 'new'
-      })
+      .from("contact_inquiries")
+      .insert(insertData)
       .select()
       .single();
 
@@ -261,28 +288,33 @@ export async function getActiveFAQs() {
 export async function getWebsiteSetting(key: string) {
   try {
     const { data, error } = await supabase
-      .from('website_settings')
-      .select('value')
-      .eq('key', key)
+      .from("website_settings")
+      .select("value")
+      .eq("key", key)
       .single();
 
     if (error) throw error;
-    return { data: data?.value, error: null };
+    if (!data) return { data: null, error: null };
+
+    return { data: data.value, error: null };
   } catch (error) {
     console.error('Get website setting error:', error);
     return { data: null, error };
   }
 }
 
-export async function updateWebsiteSetting(key: string, value: any, userId: string) {
+export async function updateWebsiteSetting(key: string, value: any, userId?: string) {
   try {
+    const updateData: TablesUpdate<"website_settings"> = {
+      value,
+      updated_by: userId || null,
+      updated_at: new Date().toISOString()
+    };
+
     const { data, error } = await supabase
-      .from('website_settings')
-      .upsert({
-        key,
-        value,
-        updated_by: userId
-      })
+      .from("website_settings")
+      .update(updateData)
+      .eq("key", key)
       .select()
       .single();
 

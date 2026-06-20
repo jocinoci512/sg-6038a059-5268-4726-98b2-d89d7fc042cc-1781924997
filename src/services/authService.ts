@@ -1,5 +1,6 @@
 import { supabase } from "@/integrations/supabase/client";
 import type { User, Session } from "@supabase/supabase-js";
+import type { TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
 
 export interface Profile {
   id: string;
@@ -43,15 +44,17 @@ class AuthService {
       if (!authData.user) throw new Error('Failed to create user');
 
       // Create profile
+      const profileData: TablesInsert<"profiles"> = {
+        id: authData.user.id,
+        email,
+        full_name: fullName,
+        phone: phone || null,
+        role: 'client'
+      };
+
       const { error: profileError } = await supabase
         .from('profiles')
-        .insert({
-          id: authData.user.id,
-          email,
-          full_name: fullName,
-          phone: phone || null,
-          role: 'client'
-        });
+        .insert(profileData);
 
       if (profileError) throw profileError;
 
@@ -76,9 +79,13 @@ class AuthService {
 
       // Update last login
       if (data.user) {
+        const updateData: TablesUpdate<"profiles"> = {
+          last_login: new Date().toISOString()
+        };
+        
         await supabase
           .from('profiles')
-          .update({ last_login: new Date().toISOString() })
+          .update(updateData)
           .eq('id', data.user.id);
       }
 
@@ -155,9 +162,11 @@ class AuthService {
    */
   async updateProfile(userId: string, updates: Partial<Profile>) {
     try {
+      const updateData: TablesUpdate<"profiles"> = updates;
+      
       const { data, error } = await supabase
         .from('profiles')
-        .update(updates)
+        .update(updateData)
         .eq('id', userId)
         .select()
         .single();
@@ -271,14 +280,16 @@ class AuthService {
       if (!authData.user) throw new Error('Failed to create admin user');
 
       // Create admin profile
+      const profileData: TablesInsert<"profiles"> = {
+        id: authData.user.id,
+        email,
+        full_name: fullName,
+        role: 'admin'
+      };
+
       const { error: profileError } = await supabase
         .from('profiles')
-        .insert({
-          id: authData.user.id,
-          email,
-          full_name: fullName,
-          role: 'admin'
-        });
+        .insert(profileData);
 
       if (profileError) throw profileError;
 
