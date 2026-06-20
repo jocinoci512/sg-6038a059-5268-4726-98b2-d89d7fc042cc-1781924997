@@ -36,15 +36,15 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>CipherTrace | Secure Your Crypto Future with Blockchain Intelligence</title>
-        <meta name="description" content="World-class blockchain intelligence to combat fraud and protect your crypto assets. Recover from scams with CipherTrace forensic tools and AML compliance solutions." />
-        <meta name="keywords" content="CipherTrace, blockchain intelligence, crypto security, AML compliance, cryptocurrency forensics, scam recovery, Mastercard crypto, blockchain analytics" />
-        <meta property="og:title" content="CipherTrace: Securing Your Crypto Future" />
-        <meta property="og:description" content="Leading blockchain intelligence platform for crypto security, scam recovery, and AML compliance. A Mastercard Company." />
-        <meta property="og:url" content="https://ciphertracers.com" />
+        <title>Cipherstracer | Blockchain Investigation & Digital Asset Recovery Services</title>
+        <meta name="description" content="Professional blockchain investigation and cryptocurrency recovery services. Expert wallet tracing, fraud investigation, and digital asset forensics. Trusted by victims worldwide." />
+        <meta name="keywords" content="Cipherstracer, blockchain investigation, crypto fraud recovery, cryptocurrency forensics, wallet tracing, asset recovery, digital asset investigation, blockchain analytics" />
+        <meta property="og:title" content="Cipherstracer: Expert Blockchain Investigation & Asset Recovery" />
+        <meta property="og:description" content="Leading blockchain investigation platform for cryptocurrency fraud recovery, wallet tracing, and digital asset forensics. Professional investigative services." />
+        <meta property="og:url" content="https://cipherstracer.com" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://ciphertracers.com/og-image.jpg" />
-        <link rel="canonical" href="https://ciphertracers.com" />
+        <meta property="og:image" content="https://cipherstracer.com/og-image.jpg" />
+        <link rel="canonical" href="https://cipherstracer.com" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
@@ -69,7 +69,7 @@ export default function HomePage() {
                   Real Clients. Real Recovery. Real Hope.
                 </h2>
                 <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                  Watch actual clients share their journey from scam victim to successful fund recovery with CipherTrace blockchain forensics.
+                  Watch actual clients share their journey from scam victim to successful fund recovery with Cipherstracer blockchain forensics.
                 </p>
               </div>
 

@@ -47,7 +47,7 @@ Submitted: ${new Date().toLocaleString()}
       const web3formsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
       if (!web3formsKey) {
-        throw new Error("Email service not configured. Please contact support directly at contact@ciphertracers.com");
+        throw new Error("Email service not configured. Please contact support directly at support@cipherstracer.com");
       }
 
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -61,7 +61,7 @@ Submitted: ${new Date().toLocaleString()}
           from_name: name,
           email: email,
           message: emailContent,
-          to_email: "contact@ciphertracers.com"
+          to_email: "support@cipherstracer.com"
         }),
       });
 
@@ -94,29 +94,29 @@ Submitted: ${new Date().toLocaleString()}
       }
     } catch (err) {
       setSubmitting(false);
-      setError(err instanceof Error ? err.message : "Failed to send message. Please try again or email us directly at contact@ciphertracers.com");
+      setError(err instanceof Error ? err.message : "Failed to send message. Please try again or email us directly at support@cipherstracer.com");
       console.error("Contact form error:", err);
     }
   };
 
   // Contact URLs
-  const phoneNumber = "+12146899293";
-  const displayPhone = "+1 (214) 689-9293";
-  const whatsappUrl = `https://wa.me/12146899293?text=${encodeURIComponent("Hello, I need help with crypto fraud case support.")}`;
+  const phoneNumber = "+19405609662";
+  const displayPhone = "+1 (940) 560-9662";
+  const whatsappUrl = `https://wa.me/19405609662?text=${encodeURIComponent("Hello, I need help with crypto fraud case support.")}`;
   const smsUrl = `sms:${phoneNumber}`;
   const telUrl = `tel:${phoneNumber}`;
 
   return (
     <>
       <Head>
-        <title>Contact CipherTracers | Get in Touch for Crypto Security Solutions</title>
-        <meta name="description" content="Contact CipherTracers for inquiries about our blockchain analytics, AML compliance, and crypto security services. Report scams and connect with our team." />
-        <meta name="keywords" content="contact CipherTracers, crypto security support, blockchain analytics inquiry, report crypto scam, CipherTracers email" />
-        <meta property="og:title" content="Contact CipherTracers | Secure Your Crypto Future" />
-        <meta property="og:description" content="Reach out to our team for expert solutions in cryptocurrency intelligence and security." />
-        <meta property="og:url" content="https://ciphertracers.com/contact" />
-        <meta property="og:site_name" content="CipherTracers" />
-        <link rel="canonical" href="https://ciphertracers.com/contact" />
+        <title>Contact Cipherstracer | Blockchain Investigation & Asset Recovery Support</title>
+        <meta name="description" content="Contact Cipherstracer for expert blockchain investigation, cryptocurrency fraud recovery, and digital asset tracing services. 24/7 support available." />
+        <meta name="keywords" content="contact Cipherstracer, crypto fraud investigation, blockchain investigation support, asset recovery contact, cryptocurrency tracing inquiry" />
+        <meta property="og:title" content="Contact Cipherstracer | Expert Blockchain Investigation" />
+        <meta property="og:description" content="Reach out to our team for professional blockchain investigation and digital asset recovery services." />
+        <meta property="og:url" content="https://cipherstracer.com/contact" />
+        <meta property="og:site_name" content="Cipherstracer" />
+        <link rel="canonical" href="https://cipherstracer.com/contact" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
@@ -293,8 +293,8 @@ Submitted: ${new Date().toLocaleString()}
                     </CardHeader>
                     <CardContent>
                       <p className="text-slate-700">For general inquiries, support, or partnership opportunities:</p>
-                      <a href="mailto:contact@ciphertracers.com" className="text-blue-600 hover:text-blue-700 font-medium text-lg break-all">
-                        contact@ciphertracers.com
+                      <a href="mailto:support@cipherstracer.com" className="text-blue-600 hover:text-blue-700 font-medium text-lg break-all">
+                        support@cipherstracer.com
                       </a>
                     </CardContent>
                   </Card>
@@ -309,8 +309,8 @@ Submitted: ${new Date().toLocaleString()}
                     <CardContent>
                       <p className="text-slate-700 mb-2">Follow us for the latest updates and insights:</p>
                       <Button variant="outline" asChild>
-                        <Link href="https://twitter.com/CipherTracers" target="_blank" rel="noopener noreferrer">
-                          @CipherTracers on Twitter <ExternalLink className="ml-2 h-4 w-4" />
+                        <Link href="https://twitter.com/Cipherstracer" target="_blank" rel="noopener noreferrer">
+                          @Cipherstracer on Twitter <ExternalLink className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
                     </CardContent>
@@ -340,7 +340,7 @@ Submitted: ${new Date().toLocaleString()}
                         </Button>
                       </div>
                        <p className="text-xs text-slate-500 mt-3">
-                        Note: CipherTracers provides intelligence tools but does not directly handle individual scam recovery cases. Reporting to authorities is a crucial first step.
+                        Note: Cipherstracer provides blockchain investigation and asset recovery services. Reporting to authorities is a crucial first step.
                       </p>
                     </CardContent>
                   </Card>

@@ -2,9 +2,9 @@ import Link from "next/link";
 import { Shield, Twitter, Linkedin, Mail, Phone, MessageCircle } from "lucide-react";
 
 export default function Footer() {
-  const phoneNumber = "+1 (214) 689-9293";
-  const whatsappUrl = "https://wa.me/12146899293?text=Hello%2C%20I%20need%20help%20with%20crypto%20security.";
-  const telUrl = "tel:+12146899293";
+  const phoneNumber = "+1 (940) 560-9662";
+  const whatsappUrl = "https://wa.me/19405609662?text=Hello%2C%20I%20need%20help%20with%20crypto%20security.";
+  const telUrl = "tel:+19405609662";
 
   return (
     <footer className="bg-slate-900 text-white">
@@ -13,13 +13,13 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Shield className="h-8 w-8 text-blue-400" />
-              <span className="text-xl font-bold">CipherTrace</span>
+              <span className="text-xl font-bold">Cipherstracer</span>
             </div>
             <p className="text-slate-300 text-sm">
-              Securing the crypto economy through world-class blockchain intelligence and AML compliance solutions.
+              Leading blockchain investigation and digital asset recovery platform. Trusted by individuals and institutions worldwide for cryptocurrency fraud investigation and asset tracing.
             </p>
             <div className="flex space-x-4">
-              <Link href="https://twitter.com/CipherTrace" className="text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="https://twitter.com/Cipherstracer" className="text-slate-400 hover:text-blue-400 transition-colors">
                 <Twitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
@@ -27,7 +27,7 @@ export default function Footer() {
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-              <Link href="mailto:contact@ciphertrace.com" className="text-slate-400 hover:text-blue-400 transition-colors">
+              <Link href="mailto:support@cipherstracer.com" className="text-slate-400 hover:text-blue-400 transition-colors">
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
@@ -97,7 +97,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-slate-400">
-            © {new Date().getFullYear()} CipherTrace. A Mastercard Company. All rights reserved.
+            © {new Date().getFullYear()} Cipherstracer. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="text-sm text-slate-400 hover:text-white transition-colors">Privacy Policy</Link>

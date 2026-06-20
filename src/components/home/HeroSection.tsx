@@ -42,15 +42,15 @@ export function HeroSection() {
         <div className="max-w-4xl">
           <Badge className="mb-6 bg-blue-500/20 text-blue-100 border-blue-400/30 backdrop-blur-sm">
             <Shield className="h-4 w-4 mr-2" />
-            Blockchain Intelligence • A Mastercard Company
+            Blockchain Investigation & Digital Asset Recovery
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            CipherTrace: Securing Your Crypto Future
+            Cipherstracer: Expert Blockchain Investigation & Asset Recovery
           </h1>
           
           <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl leading-relaxed">
-            World-class blockchain intelligence to combat fraud and protect your assets.
+            Advanced blockchain forensics and cryptocurrency tracing to recover stolen digital assets and combat fraud.
           </p>
 
           {/* Live Stats Grid */}

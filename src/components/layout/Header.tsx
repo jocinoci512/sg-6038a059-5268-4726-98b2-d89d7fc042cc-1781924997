@@ -33,7 +33,7 @@ const SERVICES = [
 ];
 
 export default function Header() {
-  const whatsappUrl = "https://wa.me/12146899293?text=Hello%2C%20I%20need%20help%20with%20a%20crypto%20fraud%20case.";
+  const whatsappUrl = "https://wa.me/19405609662?text=Hello%2C%20I%20need%20help%20with%20a%20crypto%20fraud%20case.";
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
@@ -90,7 +90,7 @@ export default function Header() {
     <header className="border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
       <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         <Link href="/" className="font-bold text-slate-900 text-lg hover:text-blue-600 transition-colors shrink-0">
-          CipherTrace
+          Cipherstracer
         </Link>
 
         {/* Desktop Navigation */}
