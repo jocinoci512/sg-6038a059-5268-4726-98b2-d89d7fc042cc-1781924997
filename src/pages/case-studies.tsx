@@ -19,7 +19,7 @@ const caseStudies = [
     duration: "47 days",
     status: "Recovered",
     dateRange: "Jan 2024 - Mar 2024",
-    overview: "Victim met scammer on dating app, lost $127K over 6 months through multiple crypto transfers. CipherTrace tracked funds across 8 exchanges and 3 countries.",
+    overview: "Victim met scammer on dating app, lost $127K over 6 months through multiple crypto transfers. Cipherstracer tracked funds across 8 exchanges and 3 countries.",
     challenge: "Funds were split across multiple wallets and exchanges, with some sent through privacy coins (Monero). The scammer used sophisticated layering techniques.",
     approach: [
       "Analyzed all transaction IDs and wallet addresses provided by victim",
@@ -144,13 +144,14 @@ export default function CaseStudiesPage() {
   return (
     <>
       <Head>
-        <title>Case Studies: Real Crypto Recovery Success Stories | CipherTrace</title>
-        <meta name="description" content="Detailed case studies of successful crypto recovery operations. See how CipherTrace blockchain forensics traced and recovered stolen funds from romance scams, Ponzi schemes, and investment fraud." />
-        <meta name="keywords" content="crypto recovery case studies, blockchain forensics examples, scam recovery success stories, CipherTrace case studies, cryptocurrency investigation" />
-        <meta property="og:title" content="Crypto Recovery Case Studies | CipherTrace Success Stories" />
+        <title>Case Studies: Real Crypto Recovery Success Stories | Cipherstracer</title>
+        <meta name="description" content="Detailed case studies of successful crypto recovery operations. See how Cipherstracer blockchain forensics traced and recovered stolen funds from romance scams, Ponzi schemes, and investment fraud." />
+        <meta name="keywords" content="crypto recovery case studies, blockchain forensics examples, scam recovery success stories, Cipherstracer case studies, cryptocurrency investigation" />
+        <meta property="og:title" content="Crypto Recovery Case Studies | Cipherstracer Success Stories" />
         <meta property="og:description" content="Real case studies with charts and data showing how we recover stolen crypto." />
-        <meta property="og:url" content="https://ciphertracers.com/case-studies" />
-        <link rel="canonical" href="https://ciphertracers.com/case-studies" />
+        <meta property="og:url" content="https://cipherstracer.com/case-studies" />
+        <meta property="og:site_name" content="Cipherstracer" />
+        <link rel="canonical" href="https://cipherstracer.com/case-studies" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">

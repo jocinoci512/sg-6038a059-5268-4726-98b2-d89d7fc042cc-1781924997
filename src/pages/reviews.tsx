@@ -37,7 +37,7 @@ const videoTestimonials = [
     title: "Ponzi Scheme Recovery - $203,000 Recovered",
     location: "Australia 🇦🇺",
     amount: "$203,000",
-    description: "Emma was caught in an elaborate Ponzi scheme. CipherTrace's blockchain forensics unraveled the complex network and recovered her investment.",
+    description: "Emma was caught in an elaborate Ponzi scheme. Cipherstracer's blockchain forensics unraveled the complex network and recovered her investment.",
     category: "Ponzi Scheme"
   },
   {
@@ -56,7 +56,7 @@ const writtenTestimonials = [
     location: "Mexico City 🇲🇽",
     amount: "$45,000",
     rating: 5,
-    text: "I thought my money was gone forever after falling for a fake DeFi platform. CipherTrace not only traced my funds but also helped coordinate with law enforcement. Professional, fast, and effective.",
+    text: "I thought my money was gone forever after falling for a fake DeFi platform. Cipherstracer not only traced my funds but also helped coordinate with law enforcement. Professional, fast, and effective.",
     scamType: "DeFi Scam"
   },
   {
@@ -64,7 +64,7 @@ const writtenTestimonials = [
     location: "Mumbai 🇮🇳",
     amount: "₹3.2L",
     rating: 5,
-    text: "The romance scammer had convinced me to send crypto over 6 months. CipherTrace's team was compassionate and highly skilled. They recovered 80% of my funds and gave me hope again.",
+    text: "The romance scammer had convinced me to send crypto over 6 months. Cipherstracer's team was compassionate and highly skilled. They recovered 80% of my funds and gave me hope again.",
     scamType: "Romance Scam"
   },
   {
@@ -72,7 +72,7 @@ const writtenTestimonials = [
     location: "Dubai 🇦🇪",
     amount: "$178,000",
     rating: 5,
-    text: "A fake investment advisor disappeared with my Bitcoin. CipherTrace tracked the transactions through multiple mixers and tumblers. Their forensic capabilities are unmatched.",
+    text: "A fake investment advisor disappeared with my Bitcoin. Cipherstracer tracked the transactions through multiple mixers and tumblers. Their forensic capabilities are unmatched.",
     scamType: "Investment Fraud"
   },
   {
@@ -80,7 +80,7 @@ const writtenTestimonials = [
     location: "Paris 🇫🇷",
     amount: "€62,000",
     rating: 5,
-    text: "I fell for a phishing attack that drained my wallet. CipherTrace identified the attacker's network and worked with Interpol. I got most of my funds back. Merci!",
+    text: "I fell for a phishing attack that drained my wallet. Cipherstracer identified the attacker's network and worked with Interpol. I got most of my funds back. Merci!",
     scamType: "Phishing Attack"
   },
   {
@@ -88,7 +88,7 @@ const writtenTestimonials = [
     location: "Shanghai 🇨🇳",
     amount: "¥850,000",
     rating: 5,
-    text: "CipherTrace helped me recover funds from a fraudulent exchange that claimed to be regulated. Their blockchain intelligence is truly world-class.",
+    text: "Cipherstracer helped me recover funds from a fraudulent exchange that claimed to be regulated. Their blockchain intelligence is truly world-class.",
     scamType: "Exchange Fraud"
   },
   {
@@ -96,7 +96,7 @@ const writtenTestimonials = [
     location: "São Paulo 🇧🇷",
     amount: "R$215,000",
     rating: 5,
-    text: "After losing money to a pyramid scheme, I was devastated. CipherTrace's team gave me detailed updates throughout the recovery process. Highly recommend!",
+    text: "After losing money to a pyramid scheme, I was devastated. Cipherstracer's team gave me detailed updates throughout the recovery process. Highly recommend!",
     scamType: "Pyramid Scheme"
   }
 ];
@@ -105,14 +105,15 @@ export default function ReviewsPage() {
   return (
     <>
       <Head>
-        <title>Client Success Stories & Video Reviews | CipherTrace Recovery Evidence</title>
-        <meta name="description" content="Watch real video testimonials from clients who recovered their crypto funds with CipherTrace. See documented proof of successful scam recovery cases worldwide." />
-        <meta name="keywords" content="crypto recovery testimonials, blockchain forensics reviews, scam recovery proof, CipherTrace success stories, video evidence recovery" />
-        <meta property="og:title" content="Real Recovery Stories | CipherTrace Client Reviews" />
+        <title>Client Success Stories & Video Reviews | Cipherstracer Recovery Evidence</title>
+        <meta name="description" content="Watch real video testimonials from clients who recovered their crypto funds with Cipherstracer. See documented proof of successful scam recovery cases worldwide." />
+        <meta name="keywords" content="crypto recovery testimonials, blockchain forensics reviews, scam recovery proof, Cipherstracer success stories, video evidence recovery" />
+        <meta property="og:title" content="Real Recovery Stories | Cipherstracer Client Reviews" />
         <meta property="og:description" content="Video evidence of successful crypto scam recoveries. Real clients, real results, real hope." />
-        <meta property="og:url" content="https://ciphertracers.com/reviews" />
+        <meta property="og:url" content="https://cipherstracer.com/reviews" />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://ciphertracers.com/reviews" />
+        <meta property="og:site_name" content="Cipherstracer" />
+        <link rel="canonical" href="https://cipherstracer.com/reviews" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
@@ -135,7 +136,7 @@ export default function ReviewsPage() {
                   Real People. Real Recovery. Real Hope.
                 </h1>
                 <p className="text-xl md:text-2xl text-blue-100 mb-8">
-                  Watch actual clients share their journey from scam victim to fund recovery with CipherTrace blockchain intelligence.
+                  Watch actual clients share their journey from scam victim to fund recovery with Cipherstracer blockchain intelligence.
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-8 text-sm md:text-base">
                   <div className="flex items-center gap-2">
@@ -170,7 +171,7 @@ export default function ReviewsPage() {
                   Watch Their Recovery Stories
                 </h2>
                 <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                  Every video is a real client who trusted CipherTrace to trace their stolen crypto. These are their stories of hope, recovery, and justice.
+                  Every video is a real client who trusted Cipherstracer to trace their stolen crypto. These are their stories of hope, recovery, and justice.
                 </p>
               </div>
 
@@ -237,7 +238,7 @@ export default function ReviewsPage() {
                   Voices From Around the World
                 </h2>
                 <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                  Read what our clients have to say about their experience with CipherTrace recovery services.
+                  Read what our clients have to say about their experience with Cipherstracer recovery services.
                 </p>
               </div>
 
@@ -304,7 +305,7 @@ export default function ReviewsPage() {
                 Your Recovery Story Starts Here
               </h2>
               <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                Join thousands of clients worldwide who trusted CipherTrace to recover their stolen crypto. No upfront fees. No recovery, no charge.
+                Join thousands of clients worldwide who trusted Cipherstracer to recover their stolen crypto. No upfront fees. No recovery, no charge.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50">

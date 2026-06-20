@@ -1,6 +1,6 @@
 ---
 title: Global Rebranding and Contact Information Update
-status: todo
+status: done
 priority: urgent
 type: feature
 tags: [branding, contact]

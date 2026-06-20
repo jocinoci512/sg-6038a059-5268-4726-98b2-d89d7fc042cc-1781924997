@@ -57,12 +57,14 @@ export default function ResourcesPage() {
   return (
     <>
       <Head>
-        <title>CipherTrace Resources | Crypto Security Blog & Guides</title>
-        <meta name="description" content="Access CipherTrace's blog for articles on scam prevention, blockchain security, and downloadable guides to enhance your crypto knowledge." />
-        <meta name="keywords" content="crypto security blog, blockchain guides, scam prevention tips, CipherTrace resources, crypto education" />
-        <meta property="og:title" content="CipherTrace Resources | Blog & Downloadable Guides" />
+        <title>Cipherstracer Resources | Crypto Security Blog & Guides</title>
+        <meta name="description" content="Access Cipherstracer's blog for articles on scam prevention, blockchain security, and downloadable guides to enhance your crypto knowledge." />
+        <meta name="keywords" content="crypto security blog, blockchain guides, scam prevention tips, Cipherstracer resources, crypto education" />
+        <meta property="og:title" content="Cipherstracer Resources | Blog & Downloadable Guides" />
         <meta property="og:description" content="Stay informed with our expert articles and practical guides on cryptocurrency security." />
-        <link rel="canonical" href="https://ciphertrace.com/resources" />
+        <meta property="og:url" content="https://cipherstracer.com/resources" />
+        <meta property="og:site_name" content="Cipherstracer" />
+        <link rel="canonical" href="https://cipherstracer.com/resources" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -160,7 +162,7 @@ export default function ResourcesPage() {
               <Mail className="h-12 w-12 mb-4 mx-auto" />
               <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
               <p className="text-xl text-blue-100 mb-8">
-                Subscribe to our newsletter for the latest CipherTrace news, product updates, and crypto security insights.
+                Subscribe to our newsletter for the latest Cipherstracer news, product updates, and crypto security insights.
               </p>
               <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <Input 
