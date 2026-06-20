@@ -12,12 +12,12 @@ export default function Document() {
         
         {/* SEO Meta Tags */}
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="CipherTrace" />
-        <meta name="copyright" content="CipherTrace - A Mastercard Company" />
+        <meta name="author" content="Cipherstracer" />
+        <meta name="copyright" content="Cipherstracer" />
         
         {/* Open Graph Meta Tags */}
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="CipherTrace" />
+        <meta property="og:site_name" content="Cipherstracer" />
       </Head>
       <body>
         <Main />

@@ -16,7 +16,7 @@ export default function AdminLayout({ children, onLogout }: AdminLayoutProps) {
               <Shield className="h-4 w-4 text-white" />
             </div>
             <div>
-              <h1 className="font-semibold text-slate-900">CipherTracers Admin</h1>
+              <h1 className="font-semibold text-slate-900">Cipherstracer Admin</h1>
               <p className="text-xs text-slate-600">Secure Dashboard</p>
             </div>
           </div>

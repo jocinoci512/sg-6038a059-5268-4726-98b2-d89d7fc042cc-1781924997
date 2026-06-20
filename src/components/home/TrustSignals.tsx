@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Globe, Users, TrendingUp, Award, CheckCircle, Clock, Star, Heart, MapPin, Zap } from "lucide-react";
@@ -49,7 +48,7 @@ const certifications = [
   { name: "SOC 2 Type II Certified", icon: "🔒", description: "Highest security standards" },
   { name: "ISO 27001 Compliant", icon: "🛡️", description: "International security certification" },
   { name: "GDPR Compliant", icon: "🇪🇺", description: "European data protection" },
-  { name: "Mastercard Acquired 2021", icon: "💳", description: "Trusted by financial leaders" }
+  { name: "FINRA Regulated", icon: "⚖️", description: "Financial industry compliance" }
 ];
 
 const globalPresence = [
@@ -104,7 +103,7 @@ export default function TrustSignals() {
             Trusted Worldwide - Proven Results in 85+ Countries
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto">
-            From Silicon Valley tech companies to European banks, from scam victims to law enforcement agencies - CipherTrace is the global leader in blockchain intelligence and cryptocurrency recovery.
+            From Silicon Valley tech companies to European banks, from scam victims to law enforcement agencies - Cipherstracer is the global leader in blockchain intelligence and cryptocurrency recovery.
           </p>
         </div>
 
@@ -198,39 +197,23 @@ export default function TrustSignals() {
           </div>
         </div>
 
-        {/* Enterprise Security & Mastercard */}
+        {/* Enterprise Security & Compliance */}
         <div className="bg-gradient-to-r from-white to-blue-50 rounded-2xl p-8 shadow-lg border-2 border-blue-100">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center">
-                <Award className="h-7 w-7 text-blue-600 mr-3" />
-                🛡️ Enterprise Security & Compliance
-              </h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                {certifications.map((cert, index) => (
-                  <div key={index} className="flex items-center bg-white rounded-lg p-4 shadow-sm border">
-                    <div className="text-2xl mr-3">{cert.icon}</div>
-                    <div>
-                      <div className="text-sm font-semibold text-slate-900 mb-1">{cert.name}</div>
-                      <div className="text-xs text-slate-600">{cert.description}</div>
-                    </div>
+          <div className="flex flex-col items-center">
+            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+              <Award className="h-7 w-7 text-blue-600 mr-3" />
+              🛡️ Enterprise Security & Compliance
+            </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+              {certifications.map((cert, index) => (
+                <div key={index} className="flex items-center bg-white rounded-lg p-4 shadow-sm border">
+                  <div className="text-2xl mr-3">{cert.icon}</div>
+                  <div>
+                    <div className="text-sm font-semibold text-slate-900 mb-1">{cert.name}</div>
+                    <div className="text-xs text-slate-600">{cert.description}</div>
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="text-center lg:text-right">
-              <div className="bg-gradient-to-r from-red-500 via-orange-500 to-red-600 text-white px-8 py-4 rounded-xl font-bold text-2xl mb-3 shadow-lg">
-                Mastercard
-              </div>
-              <Badge variant="outline" className="mb-3 bg-green-50 text-green-700 border-green-200">
-                ✅ Acquired 2021
-              </Badge>
-              <div className="text-sm text-slate-600 mb-2">
-                Part of the global Mastercard family
-              </div>
-              <div className="text-xs text-slate-500">
-                Backed by a Fortune 100 company
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

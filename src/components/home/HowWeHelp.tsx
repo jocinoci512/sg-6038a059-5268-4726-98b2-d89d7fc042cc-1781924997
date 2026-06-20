@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -33,7 +32,7 @@ export default function HowWeHelp() {
     { step: "1", title: "Report to Authorities", description: "File a complaint with IC3.gov (US) or ActionFraud.police.uk (UK)" },
     { step: "2", title: "Contact Your Exchange", description: "Immediately notify your cryptocurrency exchange or wallet provider" },
     { step: "3", title: "Gather Evidence", description: "Collect all transaction IDs, addresses, and communication records" },
-    { step: "4", title: "Seek Professional Help", description: "Contact CipherTrace for advanced blockchain forensics assistance" }
+    { step: "4", title: "Seek Professional Help", description: "Contact Cipherstracer for advanced blockchain forensics assistance" }
   ];
 
   return (
@@ -48,7 +47,7 @@ export default function HowWeHelp() {
           </h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
             Whether you're a victim of crypto fraud or want to protect your investments, 
-            CipherTrace provides the tools and expertise to secure your digital assets.
+            Cipherstracer provides the tools and expertise to secure your digital assets.
           </p>
         </div>
 

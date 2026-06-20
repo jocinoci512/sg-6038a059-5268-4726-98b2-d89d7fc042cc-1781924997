@@ -118,7 +118,7 @@ export default function SuccessStories() {
             How We're Helping Scam Victims Worldwide Recover Their Funds
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto">
-            From romance scams in the US to investment fraud in the UK, from employment scams in Germany to lottery fraud in Canada - CipherTrace has helped victims across 85+ countries recover over $754 million in stolen funds.
+            From romance scams in the US to investment fraud in the UK, from employment scams in Germany to lottery fraud in Canada - Cipherstracer has helped victims across 85+ countries recover over $754 million in stolen funds.
           </p>
         </div>
 
@@ -217,8 +217,8 @@ export default function SuccessStories() {
           <h3 className="text-2xl md:text-3xl font-bold mb-4">
             🚨 Been Scammed? We Can Help You Recover Your Money!
           </h3>
-          <p className="text-red-100 mb-6 max-w-3xl mx-auto text-lg">
-            Whether you've fallen victim to romance scams, fake investments, employment fraud, lottery scams, or any other financial crime - CipherTrace has the expertise to trace your stolen funds and help law enforcement bring criminals to justice.
+          <p className="text-blue-100 mb-6 max-w-3xl mx-auto text-lg">
+            Whether you've fallen victim to romance scams, fake investments, employment fraud, lottery scams, or any other financial crime - Cipherstracer has the expertise to trace your stolen funds and help law enforcement bring criminals to justice.
           </p>
           <div className="grid md:grid-cols-2 gap-4 mb-6 max-w-2xl mx-auto">
             <div className="bg-white/10 rounded-lg p-4">

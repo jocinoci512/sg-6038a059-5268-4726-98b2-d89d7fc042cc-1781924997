@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, Quote, MapPin, CheckCircle, Heart, Shield } from "lucide-react";
@@ -11,7 +10,7 @@ const testimonials = [
     location: "Washington DC, USA",
     flag: "🇺🇸",
     rating: 5,
-    text: "CipherTrace helped us trace stolen Bitcoin worth $850,000 from a romance scam. The victim got their life savings back thanks to their incredible blockchain forensics. This technology is revolutionary!",
+    text: "Cipherstracer helped us trace stolen Bitcoin worth $850,000 from a romance scam. The victim got their life savings back thanks to their incredible blockchain forensics. This technology is revolutionary!",
     highlight: "Recovered $850K from romance scam",
     scamType: "Romance Scam Recovery"
   },
@@ -22,7 +21,7 @@ const testimonials = [
     location: "London, UK",
     flag: "🇬🇧",
     rating: 5,
-    text: "In just 6 months, CipherTrace helped us solve 340+ cryptocurrency fraud cases. From fake investment schemes to government impersonation scams - their tools are absolutely game-changing for law enforcement.",
+    text: "In just 6 months, Cipherstracer helped us solve 340+ cryptocurrency fraud cases. From fake investment schemes to government impersonation scams - their tools are absolutely game-changing for law enforcement.",
     highlight: "340+ fraud cases solved",
     scamType: "Investment & Government Scams"
   },
@@ -33,7 +32,7 @@ const testimonials = [
     location: "Frankfurt, Germany",
     flag: "🇩🇪",
     rating: 5,
-    text: "Absolutely incredible! CipherTrace traced €2.3 million stolen in a sophisticated employment scam targeting job seekers. The precision of their blockchain analysis saved hundreds of families from financial ruin.",
+    text: "Absolutely incredible! Cipherstracer traced €2.3 million stolen in a sophisticated employment scam targeting job seekers. The precision of their blockchain analysis saved hundreds of families from financial ruin.",
     highlight: "€2.3M employment scam recovery",
     scamType: "Employment Scam Recovery"
   },
@@ -44,7 +43,7 @@ const testimonials = [
     location: "Madrid, Spain",
     flag: "🇪🇸",
     rating: 5,
-    text: "CipherTrace is simply amazing! They helped recover €1.7M from lottery scams targeting elderly citizens. Their compassionate approach and technical excellence gave hope back to 200+ victims.",
+    text: "Cipherstracer is simply amazing! They helped recover €1.7M from lottery scams targeting elderly citizens. Their compassionate approach and technical excellence gave hope back to 200+ victims.",
     highlight: "€1.7M lottery scam recovery",
     scamType: "Lottery Scam Recovery"
   },
@@ -55,7 +54,7 @@ const testimonials = [
     location: "Tokyo, Japan",
     flag: "🇯🇵",
     rating: 5,
-    text: "Outstanding results! CipherTrace traced ¥450M stolen through fake scholarship scams. Their advanced analytics identified the criminal network and helped us recover funds for over 500 students.",
+    text: "Outstanding results! Cipherstracer traced ¥450M stolen through fake scholarship scams. Their advanced analytics identified the criminal network and helped us recover funds for over 500 students.",
     highlight: "¥450M scholarship scam solved",
     scamType: "Scholarship Scam Recovery"
   },
@@ -66,7 +65,7 @@ const testimonials = [
     location: "Vancouver, Canada",
     flag: "🇨🇦",
     rating: 5,
-    text: "Phenomenal work! CipherTrace helped us recover CAD $3.2M from estate scams targeting grieving families. Their technology and expertise brought justice and financial recovery to vulnerable victims.",
+    text: "Phenomenal work! Cipherstracer helped us recover CAD $3.2M from estate scams targeting grieving families. Their technology and expertise brought justice and financial recovery to vulnerable victims.",
     highlight: "CAD $3.2M estate scam recovery",
     scamType: "Estate Scam Recovery"
   },
@@ -77,7 +76,7 @@ const testimonials = [
     location: "Sydney, Australia",
     flag: "🇦🇺",
     rating: 5,
-    text: "CipherTrace exceeded all expectations! They recovered AUD $4.1M from crypto investment scams and helped us identify international criminal networks. Hundreds of Australians got their savings back!",
+    text: "Cipherstracer exceeded all expectations! They recovered AUD $4.1M from crypto investment scams and helped us identify international criminal networks. Hundreds of Australians got their savings back!",
     highlight: "AUD $4.1M crypto investment recovery",
     scamType: "Crypto Investment Scam"
   },
@@ -88,7 +87,7 @@ const testimonials = [
     location: "Paris, France",
     flag: "🇫🇷",
     rating: 5,
-    text: "Magnifique! CipherTrace helped us recover €5.8M from complex financial scams targeting French citizens. Their blockchain intelligence is absolutely world-class and incredibly effective.",
+    text: "Magnifique! Cipherstracer helped us recover €5.8M from complex financial scams targeting French citizens. Their blockchain intelligence is absolutely world-class and incredibly effective.",
     highlight: "€5.8M financial scam recovery",
     scamType: "Financial Scam Recovery"
   },
@@ -99,7 +98,7 @@ const testimonials = [
     location: "São Paulo, Brazil",
     flag: "🇧🇷",
     rating: 5,
-    text: "Incrível! CipherTrace traced R$12M stolen through romance and investment scams. Their tools helped us arrest the criminal network and recover funds for over 800 Brazilian victims.",
+    text: "Incrível! Cipherstracer traced R$12M stolen through romance and investment scams. Their tools helped us arrest the criminal network and recover funds for over 800 Brazilian victims.",
     highlight: "R$12M multi-scam recovery",
     scamType: "Romance & Investment Scams"
   }
@@ -125,7 +124,7 @@ export default function TestimonialsSection() {
             Helping Scam Victims Worldwide Get Their Lives Back
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            From romance scams to crypto fraud, from employment schemes to fake lotteries - CipherTrace has helped thousands of victims across the globe recover their stolen funds and find justice.
+            From romance scams to crypto fraud, from employment schemes to fake lotteries - Cipherstracer has helped thousands of victims across the globe recover their stolen funds and find justice.
           </p>
         </div>
 
@@ -214,7 +213,7 @@ export default function TestimonialsSection() {
               🌍 Join 2,500+ Scam Victims We've Helped Worldwide
             </h3>
             <p className="text-blue-100 mb-6 max-w-3xl mx-auto text-lg">
-              Whether you've fallen victim to romance scams, crypto fraud, fake investments, or any other type of financial scam - CipherTrace has the expertise and technology to help you recover your funds. We've successfully helped victims across the US, UK, Germany, Australia, and 80+ other countries.
+              Whether you've fallen victim to romance scams, crypto fraud, fake investments, or any other type of financial scam - Cipherstracer has the expertise and technology to help you recover your funds. We've successfully helped victims across the US, UK, Germany, Australia, and 80+ other countries.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg">
