@@ -53,14 +53,9 @@ export default function ServicesOverview() {
                 <CardDescription>{service.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-slate-600">
-                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></div>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <Button variant="outline" asChild className="w-full">
+                  <Link href={service.link}>Learn More</Link>
+                </Button>
               </CardContent>
             </Card>
           ))}
