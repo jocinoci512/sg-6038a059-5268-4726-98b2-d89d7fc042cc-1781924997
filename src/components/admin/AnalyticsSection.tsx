@@ -1,172 +1,196 @@
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Users, Globe, MessageCircle, AlertTriangle, DollarSign } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { 
+  TrendingUp, 
+  Users, 
+  FileText, 
+  Mail, 
+  FolderKanban,
+  Loader2 
+} from "lucide-react";
 
-export default function AnalyticsSection() {
-  const analyticsData = {
-    totalVisitors: 12847,
-    messagesSent: 156,
-    scamReports: 23,
-    countriesReached: 45,
-    recoveredFunds: "$2.3M",
-    successRate: "78%"
+interface AnalyticsData {
+  totalCases: number;
+  activeCases: number;
+  totalClients: number;
+  blogPosts: number;
+  publishedPosts: number;
+  newsletterSubscribers: number;
+  contactInquiries: number;
+  newInquiries: number;
+  casesThisMonth: number;
+  subscribersThisMonth: number;
+}
+
+export function AnalyticsSection() {
+  const [loading, setLoading] = useState(true);
+  const [analytics, setAnalytics] = useState<AnalyticsData>({
+    totalCases: 0,
+    activeCases: 0,
+    totalClients: 0,
+    blogPosts: 0,
+    publishedPosts: 0,
+    newsletterSubscribers: 0,
+    contactInquiries: 0,
+    newInquiries: 0,
+    casesThisMonth: 0,
+    subscribersThisMonth: 0,
+  });
+
+  useEffect(() => {
+    loadAnalytics();
+  }, []);
+
+  const loadAnalytics = async () => {
+    try {
+      const thirtyDaysAgo = new Date();
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+      // Cases
+      const { count: totalCases } = await supabase
+        .from("cases")
+        .select("*", { count: "exact", head: true });
+
+      const { count: activeCases } = await supabase
+        .from("cases")
+        .select("*", { count: "exact", head: true })
+        .not("status", "in", '("completed","closed")');
+
+      const { count: casesThisMonth } = await supabase
+        .from("cases")
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", thirtyDaysAgo.toISOString());
+
+      // Clients
+      const { count: totalClients } = await supabase
+        .from("profiles")
+        .select("*", { count: "exact", head: true })
+        .eq("role", "client");
+
+      // Blog
+      const { count: blogPosts } = await supabase
+        .from("blog_posts")
+        .select("*", { count: "exact", head: true });
+
+      const { count: publishedPosts } = await supabase
+        .from("blog_posts")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "published");
+
+      // Newsletter
+      const { count: newsletterSubscribers } = await supabase
+        .from("newsletter_subscribers")
+        .select("*", { count: "exact", head: true })
+        .eq("is_active", true);
+
+      const { count: subscribersThisMonth } = await supabase
+        .from("newsletter_subscribers")
+        .select("*", { count: "exact", head: true })
+        .gte("subscribed_at", thirtyDaysAgo.toISOString());
+
+      // Contact Inquiries
+      const { count: contactInquiries } = await supabase
+        .from("contact_inquiries")
+        .select("*", { count: "exact", head: true });
+
+      const { count: newInquiries } = await supabase
+        .from("contact_inquiries")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "new");
+
+      setAnalytics({
+        totalCases: totalCases || 0,
+        activeCases: activeCases || 0,
+        totalClients: totalClients || 0,
+        blogPosts: blogPosts || 0,
+        publishedPosts: publishedPosts || 0,
+        newsletterSubscribers: newsletterSubscribers || 0,
+        contactInquiries: contactInquiries || 0,
+        newInquiries: newInquiries || 0,
+        casesThisMonth: casesThisMonth || 0,
+        subscribersThisMonth: subscribersThisMonth || 0,
+      });
+
+      setLoading(false);
+    } catch (error) {
+      console.error("Error loading analytics:", error);
+      setLoading(false);
+    }
   };
 
-  const recentActivity = [
-    { action: "New scam report", details: "Romance scam from New York", time: "2 hours ago", type: "alert" },
-    { action: "Contact form submission", details: "AML inquiry from London", time: "4 hours ago", type: "message" },
-    { action: "Website visit", details: "Visitor from Germany", time: "6 hours ago", type: "visit" },
-    { action: "Scam report resolved", details: "Investment scam case closed", time: "1 day ago", type: "success" }
-  ];
-
-  const topCountries = [
-    { country: "United States", messages: 45, flag: "🇺🇸" },
-    { country: "United Kingdom", messages: 23, flag: "🇬🇧" },
-    { country: "Germany", messages: 18, flag: "🇩🇪" },
-    { country: "Canada", messages: 12, flag: "🇨🇦" },
-    { country: "Australia", messages: 8, flag: "🇦🇺" }
-  ];
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-12">
+        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+      </div>
+    );
+  }
 
   return (
-    <div className="space-y-6">
-      {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Total Visitors</p>
-                <p className="text-3xl font-bold text-slate-900">{analyticsData.totalVisitors.toLocaleString()}</p>
-                <p className="text-sm text-green-600 flex items-center gap-1 mt-1">
-                  <TrendingUp className="h-3 w-3" />
-                  +12% from last month
-                </p>
-              </div>
-              <Users className="h-8 w-8 text-blue-600" />
-            </div>
-          </CardContent>
-        </Card>
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Total Cases</CardTitle>
+          <FolderKanban className="h-4 w-4 text-slate-600" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">{analytics.totalCases}</div>
+          <p className="text-xs text-slate-600">
+            {analytics.activeCases} active · {analytics.casesThisMonth} this month
+          </p>
+        </CardContent>
+      </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Messages Received</p>
-                <p className="text-3xl font-bold text-slate-900">{analyticsData.messagesSent}</p>
-                <p className="text-sm text-green-600 flex items-center gap-1 mt-1">
-                  <TrendingUp className="h-3 w-3" />
-                  +8% from last month
-                </p>
-              </div>
-              <MessageCircle className="h-8 w-8 text-green-600" />
-            </div>
-          </CardContent>
-        </Card>
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Clients</CardTitle>
+          <Users className="h-4 w-4 text-slate-600" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">{analytics.totalClients}</div>
+          <p className="text-xs text-slate-600">Registered client accounts</p>
+        </CardContent>
+      </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Scam Reports</p>
-                <p className="text-3xl font-bold text-slate-900">{analyticsData.scamReports}</p>
-                <p className="text-sm text-red-600 flex items-center gap-1 mt-1">
-                  <AlertTriangle className="h-3 w-3" />
-                  Urgent attention needed
-                </p>
-              </div>
-              <AlertTriangle className="h-8 w-8 text-red-600" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Blog Posts</CardTitle>
+          <FileText className="h-4 w-4 text-slate-600" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">{analytics.blogPosts}</div>
+          <p className="text-xs text-slate-600">
+            {analytics.publishedPosts} published
+          </p>
+        </CardContent>
+      </Card>
 
-      {/* Impact Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Countries Reached</p>
-                <p className="text-3xl font-bold text-slate-900">{analyticsData.countriesReached}</p>
-              </div>
-              <Globe className="h-8 w-8 text-purple-600" />
-            </div>
-          </CardContent>
-        </Card>
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Newsletter</CardTitle>
+          <Mail className="h-4 w-4 text-slate-600" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">{analytics.newsletterSubscribers}</div>
+          <p className="text-xs text-slate-600">
+            +{analytics.subscribersThisMonth} this month
+          </p>
+        </CardContent>
+      </Card>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Funds Recovered</p>
-                <p className="text-3xl font-bold text-slate-900">{analyticsData.recoveredFunds}</p>
-              </div>
-              <DollarSign className="h-8 w-8 text-green-600" />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-slate-600">Success Rate</p>
-                <p className="text-3xl font-bold text-slate-900">{analyticsData.successRate}</p>
-              </div>
-              <TrendingUp className="h-8 w-8 text-blue-600" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent Activity */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Latest actions and events on your website</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentActivity.map((activity, index) => (
-                <div key={index} className="flex items-start gap-3 p-3 border rounded-lg">
-                  <div className={`w-2 h-2 rounded-full mt-2 ${
-                    activity.type === "alert" ? "bg-red-500" :
-                    activity.type === "message" ? "bg-blue-500" :
-                    activity.type === "success" ? "bg-green-500" : "bg-gray-500"
-                  }`} />
-                  <div className="flex-1">
-                    <p className="font-medium text-sm">{activity.action}</p>
-                    <p className="text-sm text-slate-600">{activity.details}</p>
-                    <p className="text-xs text-slate-500 mt-1">{activity.time}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Top Countries */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Messages by Country</CardTitle>
-            <CardDescription>Geographic distribution of incoming messages</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {topCountries.map((country, index) => (
-                <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl">{country.flag}</span>
-                    <span className="font-medium">{country.country}</span>
-                  </div>
-                  <Badge variant="secondary">{country.messages} messages</Badge>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Contact Inquiries</CardTitle>
+          <TrendingUp className="h-4 w-4 text-slate-600" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">{analytics.contactInquiries}</div>
+          <p className="text-xs text-slate-600">
+            {analytics.newInquiries} pending response
+          </p>
+        </CardContent>
+      </Card>
     </div>
   );
 }
