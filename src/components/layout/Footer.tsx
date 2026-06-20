@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Shield, Twitter, Linkedin, Mail, Phone, MessageCircle } from "lucide-react";
+import { Shield, Twitter, Linkedin, Mail, Phone, MessageCircle, MapPin } from "lucide-react";
+import { NewsletterForm } from "@/components/NewsletterForm";
 
 export default function Footer() {
   const phoneNumber = "+1 (940) 560-9662";
@@ -127,6 +128,15 @@ export default function Footer() {
           <Link href="/admin" className="text-xs text-slate-500 hover:text-slate-400 transition-colors">
             Admin Login
           </Link>
+        </div>
+        <div className="mt-8">
+          <div>
+            <h4 className="font-semibold mb-6">Newsletter</h4>
+            <p className="text-slate-300 mb-4 text-sm leading-relaxed">
+              Subscribe for blockchain security insights, fraud prevention tips, and industry updates.
+            </p>
+            <NewsletterForm source="footer" />
+          </div>
         </div>
       </div>
     </footer>
