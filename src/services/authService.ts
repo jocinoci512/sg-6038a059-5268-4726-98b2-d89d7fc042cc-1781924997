@@ -1,19 +1,8 @@
 import { supabase } from "@/integrations/supabase/client";
 import type { User, Session } from "@supabase/supabase-js";
-import type { TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
+import type { Tables, TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
 
-export interface Profile {
-  id: string;
-  email: string;
-  full_name: string | null;
-  phone: string | null;
-  role: 'admin' | 'client';
-  avatar_url: string | null;
-  created_at: string;
-  updated_at: string;
-  last_login: string | null;
-  is_active: boolean;
-}
+export type Profile = Tables<"profiles">;
 
 export interface AuthState {
   user: User | null;

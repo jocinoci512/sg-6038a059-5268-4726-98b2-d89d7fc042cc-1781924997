@@ -92,7 +92,7 @@ export default function Header() {
       (post) =>
         post.title.toLowerCase().includes(query) ||
         post.content?.toLowerCase().includes(query) ||
-        post.category?.toLowerCase().includes(query)
+        post.blog_categories?.name?.toLowerCase().includes(query)
     );
 
     // Search services
@@ -170,8 +170,8 @@ export default function Header() {
                           <FileText className="mr-2 h-4 w-4 text-blue-600" />
                           <div className="flex-1">
                             <div className="font-medium">{post.title}</div>
-                            {post.category && (
-                              <div className="text-xs text-slate-500">{post.category}</div>
+                            {post.blog_categories && (
+                              <div className="text-xs text-slate-500">{(post.blog_categories as any).name}</div>
                             )}
                           </div>
                         </CommandItem>
