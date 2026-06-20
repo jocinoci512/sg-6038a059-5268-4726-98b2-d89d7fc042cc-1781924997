@@ -1,6 +1,6 @@
 ---
 title: Homepage Content & Trust Features Enhancement
-status: todo
+status: done
 priority: high
 type: feature
 tags: [content, home, trust]
@@ -16,7 +16,7 @@ Upgrade the copywriting on the Homepage to sound authoritative, credible, and en
 - [x] Enhance TrustSignals component: Add specific certifications (ISO 27001, SOC 2, GDPR, FinCEN), compliance standards (BSA, 5AMLD, POCA), and data security commitments.
 - [x] Improve HeroSection messaging: Strengthen value propositions with professional language, specific outcome promises, and authoritative positioning.
 - [x] Upgrade ServicesOverview descriptions: Make each service description outcome-focused, professional, and specific to what clients get.
-- [ ] Add professional disclaimers and confidentiality statements to Footer if not already present.
+- [x] Add professional disclaimers and confidentiality statements to Footer if not already present.
 
 ## Acceptance
 - Trust signals show enterprise-grade certifications and compliance (not generic).

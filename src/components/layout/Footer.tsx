@@ -95,13 +95,32 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-slate-400">
-            © {new Date().getFullYear()} Cipherstracer. All rights reserved.
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-sm text-slate-400 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-sm text-slate-400 hover:text-white transition-colors">Terms of Service</Link>
+        <div className="border-t border-slate-800 mt-8 pt-8">
+          {/* Professional Disclaimers */}
+          <div className="bg-slate-800/50 rounded-lg p-6 mb-6 text-sm text-slate-400 space-y-3">
+            <p className="font-semibold text-slate-300 mb-2">Professional Disclaimers & Legal Notice</p>
+            <p>
+              <strong>Blockchain Investigation Services:</strong> Cipherstracer provides blockchain forensics, cryptocurrency tracing, and digital asset investigation services. We are not a law firm and do not provide legal advice. All investigations are conducted in compliance with applicable laws and regulations.
+            </p>
+            <p>
+              <strong>Recovery Assistance:</strong> While we employ advanced blockchain forensics to trace stolen assets, successful recovery depends on multiple factors including cooperation from exchanges, law enforcement action, and asset location. Past results do not guarantee future outcomes.
+            </p>
+            <p>
+              <strong>Confidentiality Commitment:</strong> All case information is treated with strict confidentiality. We employ attorney-client privilege protocols where applicable and never share case details without explicit client consent. All data is encrypted and stored in secure, compliance-certified infrastructure.
+            </p>
+            <p>
+              <strong>Regulatory Compliance:</strong> Our services comply with international AML/KYC regulations including the Bank Secrecy Act (BSA), 5th Anti-Money Laundering Directive (5AMLD), GDPR, and CCPA. We cooperate fully with legitimate law enforcement requests.
+            </p>
+          </div>
+
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-slate-400">
+              © {new Date().getFullYear()} Cipherstracer. All rights reserved.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link href="/privacy" className="text-sm text-slate-400 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="text-sm text-slate-400 hover:text-white transition-colors">Terms of Service</Link>
+            </div>
           </div>
         </div>
         <div className="mt-4 text-center">

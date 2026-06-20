@@ -1,9 +1,9 @@
 ---
 title: Service Pages Expansion and Refinement
-status: todo
+status: done
 priority: high
 type: feature
-tags: [services, content]
+tags: [content, services]
 created_by: agent
 created_at: 2026-06-20T01:00:00Z
 position: 3

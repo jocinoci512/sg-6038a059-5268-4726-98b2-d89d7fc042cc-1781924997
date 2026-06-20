@@ -6,7 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { ShieldCheck, SearchCode, AlertTriangle, Eye, Zap, Briefcase, CheckSquare, Network } from "lucide-react";
+import { ShieldCheck, SearchCode, AlertTriangle, Eye, Zap, Briefcase, CheckSquare, Network, Building } from "lucide-react";
 
 export default function ServicesPage() {
   const services = [
@@ -15,10 +15,12 @@ export default function ServicesPage() {
       title: "Blockchain Investigation Services",
       shortDescription: "Professional blockchain forensics and cryptocurrency tracing for individuals, businesses, and law enforcement.",
       details: [
-        { name: "Transaction Tracing", description: "Advanced tools for tracking cryptocurrency transactions across multiple blockchains and exchanges." },
-        { name: "Wallet Analysis", description: "Comprehensive investigation of wallet addresses, transaction patterns, and fund flows." }
+        { name: "Multi-Chain Transaction Tracing", description: "Advanced tracking across Bitcoin, Ethereum, Tether (USDT), and 900+ cryptocurrencies. Our forensic tools map complete transaction flows from origin to destination, including mixer and tumbler traversal." },
+        { name: "Wallet Attribution & Analysis", description: "Comprehensive investigation linking wallet addresses to real-world entities through clustering analysis, behavioral patterns, and exchange identification. Essential for legal proceedings." },
+        { name: "Smart Contract Forensics", description: "Detailed analysis of DeFi protocols, token contracts, and decentralized applications involved in fraud schemes. We identify vulnerabilities and trace fund flows through complex DeFi operations." },
+        { name: "Exchange Coordination", description: "Direct communication with 200+ cryptocurrency exchanges worldwide to freeze suspicious accounts, obtain KYC data (with legal authorization), and facilitate asset recovery operations." }
       ],
-      ctaText: "Learn More",
+      ctaText: "Request Investigation",
       ctaLink: "/contact?subject=InvestigationInquiry"
     },
     {
@@ -26,21 +28,25 @@ export default function ServicesPage() {
       title: "Digital Asset Recovery",
       shortDescription: "Expert recovery services for stolen cryptocurrency and digital assets through forensic investigation.",
       details: [
-        { name: "Fraud Case Investigation", description: "Detailed analysis of cryptocurrency fraud cases with evidence compilation for legal proceedings." },
-        { name: "Asset Freezing Coordination", description: "Working with exchanges and law enforcement to freeze and recover stolen assets." }
+        { name: "Rapid Response Protocol", description: "24-48 hour emergency investigation launch for recent fraud cases. Time is critical—our fast-track analysis maximizes recovery chances by identifying and freezing assets before they're moved or liquidated." },
+        { name: "Legal Evidence Compilation", description: "Court-ready forensic reports with complete transaction documentation, wallet attribution evidence, and expert analysis. Our reports meet evidentiary standards for criminal and civil proceedings worldwide." },
+        { name: "Law Enforcement Liaison", description: "Professional coordination with FBI, Europol, Interpol, and local agencies across 85+ countries. We provide technical expertise to support criminal investigations and asset seizure operations." },
+        { name: "Exchange Asset Freezing", description: "Emergency contact with exchanges to freeze identified accounts containing stolen funds. We've successfully frozen over $340M in assets pending recovery proceedings." }
       ],
-      ctaText: "Start Recovery",
-      ctaLink: "/contact?subject=RecoveryInquiry"
+      ctaText: "Start Recovery Case",
+      ctaLink: "/report-scam"
     },
     {
       icon: AlertTriangle,
       title: "Scam Prevention & Analysis",
       shortDescription: "Proactive identification and analysis of cryptocurrency scams, fraud schemes, and emerging threats.",
       details: [
-        { name: "Scam Detection", description: "Real-time monitoring and identification of fraudulent platforms, addresses, and schemes." },
-        { name: "Risk Assessment", description: "Comprehensive risk analysis for cryptocurrency investments and transactions." }
+        { name: "Real-Time Scam Detection", description: "Continuous monitoring of blockchain activity to identify fraudulent platforms, Ponzi schemes, and rug pulls. Our intelligence database tracks 50,000+ known scam addresses and operators." },
+        { name: "Investment Due Diligence", description: "Pre-investment verification of cryptocurrency projects, ICOs, DeFi protocols, and trading platforms. We analyze team credentials, smart contracts, tokenomics, and on-chain activity patterns." },
+        { name: "Threat Intelligence Reports", description: "Detailed analysis of emerging scam tactics including romance fraud, phishing operations, fake exchanges, and employment scams. Stay ahead of evolving threats with our intelligence updates." },
+        { name: "Wallet Safety Assessment", description: "Comprehensive security analysis of your cryptocurrency holdings including wallet configuration review, transaction pattern analysis, and exposure assessment to known threat actors." }
       ],
-      ctaText: "Protect Your Assets",
+      ctaText: "Get Risk Assessment",
       ctaLink: "/contact?subject=PreventionInquiry"
     },
     {
@@ -48,10 +54,12 @@ export default function ServicesPage() {
       title: "Forensic Evidence Collection",
       shortDescription: "Professional blockchain forensic analysis and evidence compilation for legal proceedings.",
       details: [
-        { name: "Evidence Documentation", description: "Detailed forensic reports with blockchain transaction evidence for court proceedings." },
-        { name: "Expert Testimony", description: "Professional expert witness services for cryptocurrency-related legal cases." }
+        { name: "Chain-of-Custody Documentation", description: "Forensically sound evidence collection following international standards. Complete documentation of data acquisition, analysis methodology, and findings preservation for court admissibility." },
+        { name: "Expert Witness Testimony", description: "Professional expert witness services for cryptocurrency-related legal cases. Our investigators have testified in criminal trials, civil litigation, and regulatory proceedings across multiple jurisdictions." },
+        { name: "Transaction Timeline Reconstruction", description: "Detailed chronological mapping of all cryptocurrency movements in fraud cases. We reconstruct complete event sequences with timestamps, amounts, and wallet relationships for investigative clarity." },
+        { name: "Reporting & Visualization", description: "Clear, professional reports with transaction flow diagrams, wallet relationship maps, and fund movement visualizations. Technical findings translated into accessible formats for legal teams and juries." }
       ],
-      ctaText: "Request Analysis",
+      ctaText: "Request Forensic Analysis",
       ctaLink: "/contact?subject=ForensicsInquiry"
     },
     {
@@ -59,11 +67,26 @@ export default function ServicesPage() {
       title: "Emergency Response Services",
       shortDescription: "24/7 rapid response for recent cryptocurrency fraud victims requiring immediate investigation.",
       details: [
-        { name: "Immediate Investigation", description: "Fast-track blockchain analysis for recent fraud cases to maximize recovery chances." },
-        { name: "Exchange Coordination", description: "Emergency coordination with exchanges to freeze suspicious accounts and prevent fund movement." }
+        { name: "Immediate Case Assessment", description: "Within 2 hours of contact, our team evaluates your case, identifies recovery options, and initiates blockchain tracing. Critical for cases where stolen funds are still moving through exchanges." },
+        { name: "Global Exchange Network", description: "Direct relationships with major exchanges worldwide enable rapid account freezing and KYC disclosure (with proper legal authority). We've successfully frozen assets in over 40 countries." },
+        { name: "Priority Investigation Queue", description: "Emergency cases receive immediate analyst assignment and round-the-clock monitoring. Our global team operates 24/7 across all time zones to maximize recovery windows." },
+        { name: "Victim Support & Guidance", description: "Step-by-step guidance through reporting to authorities, gathering evidence, and coordinating with financial institutions. We help victims navigate the complex recovery process with clarity and confidence." }
       ],
-      ctaText: "Get Emergency Help",
-      ctaLink: "/contact?subject=EmergencyInquiry"
+      ctaText: "Get Emergency Help Now",
+      ctaLink: "/report-scam"
+    },
+    {
+      icon: Building,
+      title: "Enterprise & Institutional Services",
+      shortDescription: "Custom blockchain intelligence solutions for financial institutions, exchanges, and compliance teams.",
+      details: [
+        { name: "AML/KYC Compliance Support", description: "Blockchain analytics integration for anti-money laundering programs. Real-time transaction monitoring, suspicious activity identification, and regulatory reporting assistance for crypto businesses." },
+        { name: "Exchange Security Audits", description: "Comprehensive security assessments of cryptocurrency exchange operations including wallet security review, transaction monitoring capabilities, and fraud prevention protocol evaluation." },
+        { name: "Custom Intelligence Solutions", description: "Tailored blockchain analysis tools and intelligence feeds for institutional clients. API integration, custom dashboards, and ongoing threat intelligence for enterprise security operations." },
+        { name: "Training & Education", description: "Professional training programs for compliance teams, law enforcement, and financial investigators. Learn blockchain forensics fundamentals, investigation techniques, and regulatory frameworks." }
+      ],
+      ctaText: "Enterprise Inquiry",
+      ctaLink: "/contact?subject=EnterpriseInquiry"
     }
   ];
 

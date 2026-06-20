@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { Users, Briefcase, Award, Building } from "lucide-react";
+import { Users, Briefcase, Award, Building, ShieldCheck, SearchCode, Eye, Shield } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -47,10 +47,13 @@ export default function AboutPage() {
                   <Users className="h-12 w-12 text-blue-600 mb-4" />
                   <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Mission</h2>
                   <p className="text-xl text-slate-700 mb-6">
-                    Protecting the blockchain economy by combating illicit finance while preserving privacy and supporting victims of cryptocurrency fraud.
+                    Protecting the digital economy by combating cryptocurrency fraud while empowering victims with professional investigation and recovery services.
+                  </p>
+                  <p className="text-slate-600 mb-4">
+                    Cipherstracer provides advanced blockchain forensics and cryptocurrency intelligence to individuals, financial institutions, government agencies, and law enforcement worldwide. Our mission is to make the crypto ecosystem safer by identifying and mitigating fraud while supporting victims in their recovery journey.
                   </p>
                   <p className="text-slate-600">
-                    We provide powerful blockchain forensics tools and intelligence to individuals, financial institutions, government agencies, and cryptocurrency businesses, enabling them to identify and mitigate risks associated with digital assets. Our commitment is to foster innovation and growth in the crypto space by building a foundation of trust, security, and justice.
+                    We believe in a future where blockchain technology can flourish without becoming a haven for financial crime. Through cutting-edge forensic technology, professional investigation methodology, and global law enforcement partnerships, we're building trust and accountability in the digital asset economy.
                   </p>
                 </div>
                 <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-xl">
@@ -61,8 +64,56 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* History Section */}
+          {/* Investigation Methodology */}
           <section className="py-16 bg-slate-50">
+            <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <ShieldCheck className="h-12 w-12 text-blue-600 mb-4 mx-auto" />
+                <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Investigation Methodology</h2>
+                <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+                  Professional blockchain forensics combining advanced technology with investigative expertise honed across thousands of cases worldwide.
+                </p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center">
+                      <SearchCode className="h-6 w-6 text-blue-600 mr-2" />
+                      1. Transaction Analysis
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-600">Advanced blockchain parsing across 900+ cryptocurrencies. We trace funds through mixers, tumblers, exchanges, and DeFi protocols with forensic precision. Every transaction hop is documented with timestamps, amounts, and wallet relationships.</p>
+                  </CardContent>
+                </Card>
+                <Card className="bg-blue-600 text-white">
+                  <CardHeader>
+                    <CardTitle className="flex items-center">
+                      <Eye className="h-6 w-6 mr-2" />
+                      2. Entity Attribution
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p>Wallet clustering and behavioral analysis to link addresses to real-world entities. We combine on-chain data with KYC information from exchanges, IP intelligence, and OSINT techniques to identify bad actors and establish evidence chains.</p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center">
+                      <Shield className="h-6 w-6 text-blue-600 mr-2" />
+                      3. Evidence & Recovery
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-600">Court-ready forensic reports with complete documentation. We coordinate with exchanges to freeze assets and work with law enforcement globally to support criminal prosecution and civil recovery proceedings.</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* History Section */}
+          <section className="py-16 bg-white">
             <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <Briefcase className="h-12 w-12 text-blue-600 mb-4 mx-auto" />
@@ -80,7 +131,7 @@ export default function AboutPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-slate-600">Founded with the vision to bring transparency and security to the emerging world of cryptocurrencies. Developed groundbreaking tools for blockchain analytics and forensic investigation.</p>
+                    <p className="text-slate-600">Founded to bring transparency and accountability to cryptocurrency. Our team of cryptography experts, financial investigators, and data scientists developed groundbreaking blockchain forensics technology now trusted by law enforcement worldwide.</p>
                   </CardContent>
                 </Card>
                 <Card className="bg-blue-600 text-white">
@@ -91,7 +142,7 @@ export default function AboutPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p>Established partnerships with law enforcement agencies, financial institutions, and cryptocurrency platforms worldwide. Our services now protect users across 85+ countries with over $2.8 billion in assets recovered.</p>
+                    <p>Established partnerships with FBI, Europol, Interpol, and law enforcement in 85+ countries. Our services have recovered over $2.8 billion in stolen assets and helped prosecute hundreds of cryptocurrency fraud operations globally.</p>
                   </CardContent>
                 </Card>
                 <Card>
@@ -102,20 +153,38 @@ export default function AboutPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-slate-600">Collaborating with leading exchanges, regulatory bodies, and victim advocacy groups worldwide to foster a safer crypto ecosystem for all participants and combat digital asset crime.</p>
+                    <p className="text-slate-600">Setting the standard for blockchain intelligence and victim advocacy. We collaborate with financial regulators, cryptocurrency exchanges, and victim support organizations to build a safer digital asset ecosystem for all participants.</p>
                   </CardContent>
                 </Card>
               </div>
             </div>
           </section>
           
-          {/* Team Section */}
-          <section className="py-16 bg-white">
+          {/* Team Expertise */}
+          <section className="py-16 bg-slate-50">
             <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8 text-center">
-              <h2 className="text-3xl font-bold text-slate-900 mb-12">Expert Team</h2>
-               <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
-                Our team comprises leading experts in blockchain forensics, cybersecurity, financial crime investigation, and regulatory compliance. We combine cutting-edge technology with deep domain expertise to deliver results.
+              <h2 className="text-3xl font-bold text-slate-900 mb-6">World-Class Expertise</h2>
+               <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-8">
+                Our team combines decades of experience in blockchain forensics, cybersecurity, financial crime investigation, law enforcement, and regulatory compliance. We bring together former FBI agents, certified fraud examiners, cryptography experts, and data scientists who have investigated some of the largest cryptocurrency fraud cases in history.
               </p>
+              <div className="grid md:grid-cols-4 gap-6 mb-8">
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">25+</div>
+                  <div className="text-sm text-slate-600">Years Combined Experience</div>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">40+</div>
+                  <div className="text-sm text-slate-600">Certified Investigators</div>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">15+</div>
+                  <div className="text-sm text-slate-600">Countries Represented</div>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="text-3xl font-bold text-blue-600 mb-2">10K+</div>
+                  <div className="text-sm text-slate-600">Cases Investigated</div>
+                </div>
+              </div>
               <Button size="lg" asChild>
                 <Link href="/contact?subject=TeamInquiry">Contact Our Team</Link>
               </Button>
