@@ -217,7 +217,7 @@ Reference ID: ${newReferenceId}
       const web3formsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
       if (!web3formsKey) {
-        throw new Error("Email service not configured. Please contact support directly at contact@ciphertracers.com");
+        throw new Error("Email service not configured. Please contact support directly at support@cipherstracer.com");
       }
 
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -231,7 +231,7 @@ Reference ID: ${newReferenceId}
           from_name: formData.fullName,
           email: formData.email,
           message: emailContent,
-          to_email: "contact@ciphertracers.com"
+          to_email: "support@cipherstracer.com"
         }),
       });
 
@@ -266,35 +266,36 @@ Reference ID: ${newReferenceId}
       }
     } catch (err) {
       setSubmitting(false);
-      setError(err instanceof Error ? err.message : "Failed to submit report. Please try again or email us directly at contact@ciphertracers.com");
+      setError(err instanceof Error ? err.message : "Failed to submit report. Please try again or email us directly at support@cipherstracer.com");
       console.error("Fraud report error:", err);
     }
   };
 
   // WhatsApp contact URL
-  const whatsappNumber = "12146899293"; // +1 (214) 689-9293 without special characters
+  const whatsappNumber = "19405609662"; // +1 (940) 560-9662 without special characters
   const whatsappMessage = referenceId 
     ? `Hello, I just submitted a fraud case. My reference ID is ${referenceId}.`
     : "Hello, I need help reporting a crypto fraud case.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   // Contact URLs for different platforms
-  const phoneNumber = "+12146899293";
+  const phoneNumber = "+19405609662";
+  const displayPhone = "+1 (940) 560-9662";
   const smsUrl = `sms:${phoneNumber}${referenceId ? `&body=${encodeURIComponent(`My reference ID is ${referenceId}`)}` : ''}`;
   const telUrl = `tel:${phoneNumber}`;
 
   return (
     <>
       <Head>
-        <title>Report a Crypto Scam | CipherTrace Fraud Case Submission</title>
-        <meta name="description" content="Report your cryptocurrency fraud case to CipherTrace. Our blockchain forensics team will investigate and help recover your stolen crypto assets." />
+        <title>Report a Crypto Scam | Cipherstracer Fraud Case Submission</title>
+        <meta name="description" content="Report your cryptocurrency fraud case to Cipherstracer. Our blockchain forensics team will investigate and help recover your stolen crypto assets." />
         <meta name="keywords" content="report crypto scam, cryptocurrency fraud report, blockchain forensics case, crypto recovery service, stolen crypto recovery, fraud investigation" />
-        <meta property="og:title" content="Report a Crypto Scam | CipherTrace Fraud Investigation" />
+        <meta property="og:title" content="Report a Crypto Scam | Cipherstracer Fraud Investigation" />
         <meta property="og:description" content="Submit your crypto fraud case securely. Our forensic team provides 24-48 hour response with no upfront fees." />
-        <meta property="og:url" content="https://ciphertracers.com/report-scam" />
+        <meta property="og:url" content="https://cipherstracer.com/report-scam" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="CipherTrace" />
-        <link rel="canonical" href="https://ciphertracers.com/report-scam" />
+        <meta property="og:site_name" content="Cipherstracer" />
+        <link rel="canonical" href="https://cipherstracer.com/report-scam" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
@@ -355,7 +356,7 @@ Reference ID: ${newReferenceId}
                   </Button>
                 </div>
                 <p className="text-sm text-blue-200 mt-4">
-                  📱 Contact us: WhatsApp • iMessage • SMS • Call: <strong className="text-white">+1 (214) 689-9293</strong>
+                  📱 Contact us: WhatsApp • iMessage • SMS • Call: <strong className="text-white">{displayPhone}</strong>
                 </p>
               </div>
             </div>

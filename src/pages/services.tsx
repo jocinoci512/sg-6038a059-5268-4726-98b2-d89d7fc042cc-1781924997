@@ -12,72 +12,72 @@ export default function ServicesPage() {
   const services = [
     {
       icon: ShieldCheck,
-      title: "Cryptocurrency AML Compliance",
-      shortDescription: "Robust solutions for Anti-Money Laundering (AML) and Counter-Terrorist Financing (CTF) in the crypto space.",
+      title: "Blockchain Investigation Services",
+      shortDescription: "Professional blockchain forensics and cryptocurrency tracing for individuals, businesses, and law enforcement.",
       details: [
-        { name: "Sentry", description: "Real-time transaction monitoring and risk scoring for exchanges, DeFi platforms, and financial institutions." },
-        { name: "Traveler", description: "Comprehensive solution for FATF Travel Rule compliance, ensuring secure and compliant information sharing." }
+        { name: "Transaction Tracing", description: "Advanced tools for tracking cryptocurrency transactions across multiple blockchains and exchanges." },
+        { name: "Wallet Analysis", description: "Comprehensive investigation of wallet addresses, transaction patterns, and fund flows." }
       ],
-      ctaText: "Explore AML Solutions",
-      ctaLink: "/contact?subject=AMLInquiry"
+      ctaText: "Learn More",
+      ctaLink: "/contact?subject=InvestigationInquiry"
     },
     {
       icon: SearchCode,
-      title: "Blockchain Forensics",
-      shortDescription: "Advanced tools and expertise for tracing and analyzing cryptocurrency transactions.",
+      title: "Digital Asset Recovery",
+      shortDescription: "Expert recovery services for stolen cryptocurrency and digital assets through forensic investigation.",
       details: [
-        { name: "Inspector", description: "Powerful blockchain analytics platform for visualizing fund flows, identifying illicit actors, and supporting investigations." },
-        { name: "Case Management", description: "Streamline your investigative workflow with our integrated case management tools." }
+        { name: "Fraud Case Investigation", description: "Detailed analysis of cryptocurrency fraud cases with evidence compilation for legal proceedings." },
+        { name: "Asset Freezing Coordination", description: "Working with exchanges and law enforcement to freeze and recover stolen assets." }
       ],
-      ctaText: "Discover Forensics Tools",
-      ctaLink: "/contact?subject=ForensicsInquiry"
+      ctaText: "Start Recovery",
+      ctaLink: "/contact?subject=RecoveryInquiry"
     },
     {
       icon: AlertTriangle,
-      title: "Threat Intelligence",
-      shortDescription: "Proactive identification and mitigation of crypto-related threats and vulnerabilities.",
+      title: "Scam Prevention & Analysis",
+      shortDescription: "Proactive identification and analysis of cryptocurrency scams, fraud schemes, and emerging threats.",
       details: [
-        { name: "Armada", description: "Comprehensive threat intelligence feed covering high-risk addresses, malware, phishing sites, and emerging threats." },
-        { name: "Risk Scoring", description: "Assess the risk profile of cryptocurrency addresses, entities, and transactions." }
+        { name: "Scam Detection", description: "Real-time monitoring and identification of fraudulent platforms, addresses, and schemes." },
+        { name: "Risk Assessment", description: "Comprehensive risk analysis for cryptocurrency investments and transactions." }
       ],
-      ctaText: "Get Threat Intel",
-      ctaLink: "/contact?subject=ThreatIntelInquiry"
+      ctaText: "Protect Your Assets",
+      ctaLink: "/contact?subject=PreventionInquiry"
     },
     {
       icon: Eye,
-      title: "De-Anonymization Tools",
-      shortDescription: "Cutting-edge technology to attribute real-world identities to cryptocurrency transactions when legally permissible.",
+      title: "Forensic Evidence Collection",
+      shortDescription: "Professional blockchain forensic analysis and evidence compilation for legal proceedings.",
       details: [
-        { name: "Attribution Engine", description: "Leverage vast datasets and advanced heuristics to link crypto activity to known entities." },
-        { name: "Dark Web Intelligence", description: "Monitor illicit marketplaces and forums for compromised data and threat actor activity." }
+        { name: "Evidence Documentation", description: "Detailed forensic reports with blockchain transaction evidence for court proceedings." },
+        { name: "Expert Testimony", description: "Professional expert witness services for cryptocurrency-related legal cases." }
       ],
-      ctaText: "Learn About De-Anonymization",
-      ctaLink: "/contact?subject=DeAnonymizationInquiry"
+      ctaText: "Request Analysis",
+      ctaLink: "/contact?subject=ForensicsInquiry"
     },
     {
       icon: Zap,
-      title: "Ransomware Detection",
-      shortDescription: "Specialized services to track, analyze, and combat ransomware attacks involving cryptocurrencies.",
+      title: "Emergency Response Services",
+      shortDescription: "24/7 rapid response for recent cryptocurrency fraud victims requiring immediate investigation.",
       details: [
-        { name: "Ransomware Payment Tracking", description: "Identify and trace ransomware payments to help victims and law enforcement." },
-        { name: "Proactive Defense", description: "Intelligence to help organizations defend against ransomware threats." }
+        { name: "Immediate Investigation", description: "Fast-track blockchain analysis for recent fraud cases to maximize recovery chances." },
+        { name: "Exchange Coordination", description: "Emergency coordination with exchanges to freeze suspicious accounts and prevent fund movement." }
       ],
-      ctaText: "Combat Ransomware",
-      ctaLink: "/contact?subject=RansomwareInquiry"
+      ctaText: "Get Emergency Help",
+      ctaLink: "/contact?subject=EmergencyInquiry"
     }
   ];
 
   return (
     <>
       <Head>
-        <title>CipherTracers Services | AML, Forensics, Threat Intelligence</title>
-        <meta name="description" content="Explore CipherTracers' comprehensive suite of services: Cryptocurrency AML Compliance (Sentry, Traveler), Blockchain Forensics (Inspector), Threat Intelligence (Armada), De-Anonymization, and Ransomware Detection." />
-        <meta name="keywords" content="CipherTracers services, AML Sentry, Traveler FATF, Blockchain Inspector, Armada threat intelligence, crypto de-anonymization, ransomware detection" />
-        <meta property="og:title" content="CipherTracers Services | Advanced Blockchain Security Solutions" />
-        <meta property="og:description" content="Empowering businesses and individuals with cutting-edge tools for crypto AML, forensics, and threat intelligence." />
-        <meta property="og:url" content="https://ciphertracers.com/services" />
-        <meta property="og:site_name" content="CipherTracers" />
-        <link rel="canonical" href="https://ciphertracers.com/services" />
+        <title>Cipherstracer Services | Blockchain Investigation & Asset Recovery</title>
+        <meta name="description" content="Professional blockchain investigation, digital asset recovery, cryptocurrency fraud analysis, and forensic services. Expert solutions for individuals and institutions." />
+        <meta name="keywords" content="Cipherstracer services, blockchain investigation, crypto recovery, asset tracing, fraud analysis, forensic evidence, scam prevention" />
+        <meta property="og:title" content="Cipherstracer Services | Advanced Blockchain Forensics" />
+        <meta property="og:description" content="Comprehensive blockchain investigation and digital asset recovery services trusted by victims and law enforcement worldwide." />
+        <meta property="og:url" content="https://cipherstracer.com/services" />
+        <meta property="og:site_name" content="Cipherstracer" />
+        <link rel="canonical" href="https://cipherstracer.com/services" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -89,22 +89,22 @@ export default function ServicesPage() {
             <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8 text-center">
               <Badge variant="secondary" className="mb-4 bg-white/20 text-white border-white/30">Our Services</Badge>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Securing the Crypto Economy, Together
+                Professional Blockchain Investigation Services
               </h1>
               <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-                CipherTracers provides a comprehensive suite of industry-leading solutions to protect your digital assets and ensure compliance.
+                Cipherstracer provides comprehensive blockchain forensics and digital asset recovery solutions for individuals, businesses, and law enforcement agencies worldwide.
               </p>
             </div>
           </section>
 
-          {/* Services Grid/Accordion Section */}
+          {/* Services Grid Section */}
           <section className="py-16 bg-white">
             <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <Briefcase className="h-12 w-12 text-blue-600 mb-4 mx-auto" />
-                <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Core Offerings</h2>
+                <h2 className="text-3xl font-bold text-slate-900 mb-4">Our Core Services</h2>
                 <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                  From regulatory compliance to advanced threat detection, our tools are designed to provide clarity and security in the complex world of digital assets.
+                  From cryptocurrency fraud investigation to asset recovery, our expert team provides the tools and expertise needed to navigate the complex world of digital assets.
                 </p>
               </div>
 
@@ -122,10 +122,7 @@ export default function ServicesPage() {
                           <AccordionItem value={`item-${idx}`} key={idx}>
                             <AccordionTrigger className="text-base font-semibold hover:text-blue-600">
                               <div className="flex items-center">
-                                {detail.name === "Sentry" || detail.name === "Inspector" || detail.name === "Armada" ? 
-                                  <Network className="h-5 w-5 mr-2 text-blue-500" /> : 
-                                  <CheckSquare className="h-5 w-5 mr-2 text-blue-500" />
-                                }
+                                <CheckSquare className="h-5 w-5 mr-2 text-blue-500" />
                                 {detail.name}
                               </div>
                             </AccordionTrigger>
@@ -146,12 +143,12 @@ export default function ServicesPage() {
               </div>
               
               <div className="text-center mt-16">
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">Ready to Enhance Your Crypto Security?</h3>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">Ready to Protect Your Digital Assets?</h3>
                 <p className="text-lg text-slate-600 max-w-xl mx-auto mb-8">
-                  Our experts are here to help you find the right solutions for your specific needs.
+                  Our blockchain investigation experts are ready to help you secure your cryptocurrency and recover stolen assets.
                 </p>
                 <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700 text-white">
-                  <Link href="/contact?subject=SolutionsInquiry">Contact Us for Solutions</Link>
+                  <Link href="/contact?subject=SolutionsInquiry">Contact Us Today</Link>
                 </Button>
               </div>
             </div>

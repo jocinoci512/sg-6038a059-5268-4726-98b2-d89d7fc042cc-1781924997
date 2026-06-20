@@ -15,9 +15,9 @@ The website must be completely rebranded to "Cipherstracer". All old contact inf
 ## Checklist
 - [x] Update Header: Replace brand name with "Cipherstracer" and update WhatsApp/call links to use `+1 (940) 560-9662`.
 - [x] Update Footer: Replace company name, descriptions, and update email to `support@cipherstracer.com`, phone to `+1 (940) 560-9662`, and social/domain links.
-- [ ] Update Contact Page: Replace all phone numbers, emails, and form submission references to the new Cipherstracer details. Ensure the WhatsApp API links, SMS links, and `tel:` links use the new phone number.
-- [ ] Update HeroSection and all Home page components to reference "Cipherstracer" instead of previous names (including removing "A Mastercard Company" if it's legacy cloned content).
-- [ ] Search for and replace any hidden references, metadata, or email templates containing the old contact details across the `src/` directory.
+- [x] Update Contact Page: Replace all phone numbers, emails, and form submission references to the new Cipherstracer details. Ensure the WhatsApp API links, SMS links, and `tel:` links use the new phone number.
+- [x] Update HeroSection and all Home page components to reference "Cipherstracer" instead of previous names (including removing "A Mastercard Company" if it's legacy cloned content).
+- [x] Search for and replace any hidden references, metadata, or email templates containing the old contact details across the `src/` directory.
 
 ## Acceptance
 - No instances of the old brand name or contact details exist in the user-facing UI or links.

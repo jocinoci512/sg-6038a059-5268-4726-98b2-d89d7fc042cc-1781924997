@@ -180,14 +180,14 @@ export default function HowWeHelpIndividualsPage() {
   return (
     <>
       <Head>
-        <title>CipherTracers Fund Recovery | Crypto Scam Recovery & Asset Tracing</title>
-        <meta name="description" content="CipherTracers helps individuals recover funds from crypto scams, romance scams, investment fraud, and more. Expert blockchain forensics and asset recovery services." />
-        <meta name="keywords" content="crypto scam recovery, fund recovery, blockchain forensics, romance scam help, investment fraud recovery, CipherTracers recovery services" />
-        <meta property="og:title" content="CipherTracers | Professional Fund Recovery Services" />
+        <title>Cipherstracer Fund Recovery | Crypto Scam Recovery & Asset Tracing</title>
+        <meta name="description" content="Cipherstracer helps individuals recover funds from crypto scams, romance scams, investment fraud, and more. Expert blockchain forensics and asset recovery services." />
+        <meta name="keywords" content="crypto scam recovery, fund recovery, blockchain forensics, romance scam help, investment fraud recovery, Cipherstracer recovery services" />
+        <meta property="og:title" content="Cipherstracer | Professional Fund Recovery Services" />
         <meta property="og:description" content="Recover your stolen cryptocurrency and assets with our expert blockchain forensics and investigation services." />
-        <meta property="og:url" content="https://ciphertracers.com/how-we-help-individuals" />
-        <meta property="og:site_name" content="CipherTracers" />
-        <link rel="canonical" href="https://ciphertracers.com/how-we-help-individuals" />
+        <meta property="og:url" content="https://cipherstracer.com/how-we-help-individuals" />
+        <meta property="og:site_name" content="Cipherstracer" />
+        <link rel="canonical" href="https://cipherstracer.com/how-we-help-individuals" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -204,7 +204,7 @@ export default function HowWeHelpIndividualsPage() {
                 Recover Your Stolen Funds
               </h1>
               <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto mb-8">
-                CipherTrace specializes in helping individuals recover funds lost to cryptocurrency scams, romance fraud, investment schemes, and other financial crimes. Our advanced blockchain forensics have recovered over $2.8 billion for victims worldwide.
+                Cipherstracer specializes in helping individuals recover funds lost to cryptocurrency scams, romance fraud, investment schemes, and other financial crimes. Our advanced blockchain forensics have recovered over $2.8 billion for victims worldwide.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50 px-8 py-4 text-lg">
@@ -383,8 +383,8 @@ export default function HowWeHelpIndividualsPage() {
                     <h3 className="text-lg font-bold text-slate-900 mb-2">Priority Email</h3>
                     <p className="text-slate-600 mb-4">Fast-track your case with our priority email</p>
                     <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 w-full" asChild>
-                      <Link href="mailto:emergency@ciphertracers.com">
-                        emergency@ciphertracers.com
+                      <Link href="mailto:support@cipherstracer.com">
+                        support@cipherstracer.com
                       </Link>
                     </Button>
                   </CardContent>
@@ -442,7 +442,7 @@ export default function HowWeHelpIndividualsPage() {
                       </div>
                     </div>
                     <p className="text-slate-700 mb-4 italic">
-                      "Lost $85,000 to a romance scam. CipherTrace traced the Bitcoin transactions and helped law enforcement recover 78% of my funds. I can't thank them enough."
+                      "Lost $85,000 to a romance scam. Cipherstracer traced the Bitcoin transactions and helped law enforcement recover 78% of my funds. I can't thank them enough."
                     </p>
                     <Badge className="bg-green-100 text-green-700">
                       Recovered: $66,300
@@ -460,7 +460,7 @@ export default function HowWeHelpIndividualsPage() {
                       </div>
                     </div>
                     <p className="text-slate-700 mb-4 italic">
-                      "Fake investment platform stole £120,000. CipherTrace's blockchain forensics identified the scammers and froze their accounts. Got most of my money back."
+                      "Fake investment platform stole £120,000. Cipherstracer's blockchain forensics identified the scammers and froze their accounts. Got most of my money back."
                     </p>
                     <Badge className="bg-green-100 text-green-700">
                       Recovered: £95,000
@@ -478,7 +478,7 @@ export default function HowWeHelpIndividualsPage() {
                       </div>
                     </div>
                     <p className="text-slate-700 mb-4 italic">
-                      "Government impersonation scam cost me €45,000. CipherTrace worked with German authorities to track down the criminals and recover my Ethereum."
+                      "Government impersonation scam cost me €45,000. Cipherstracer worked with German authorities to track down the criminals and recover my Ethereum."
                     </p>
                     <Badge className="bg-green-100 text-green-700">
                       Recovered: €38,000
