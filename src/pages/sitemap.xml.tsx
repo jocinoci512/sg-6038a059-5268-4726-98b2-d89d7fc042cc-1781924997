@@ -1,152 +1,135 @@
 import { GetServerSideProps } from "next";
-import fs from "fs";
-import path from "path";
+import { supabase } from "@/integrations/supabase/client";
 
-const SITE_URL = "https://cipherstracer.com";
+const DOMAIN = "https://cipherstracer.com";
 
-interface SitemapPage {
-  url: string;
-  lastmod: string;
-  changefreq: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
-  priority: number;
+interface SitemapEntry {
+  loc: string;
+  lastmod?: string;
+  changefreq?: string;
+  priority?: string;
 }
 
-const generateSiteMap = (pages: SitemapPage[]): string => {
+function generateSiteMap(entries: SitemapEntry[]): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${pages
-  .map((page) => {
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+${entries
+  .map((entry) => {
     return `  <url>
-    <loc>${page.url}</loc>
-    <lastmod>${page.lastmod}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
+    <loc>${entry.loc}</loc>${entry.lastmod ? `
+    <lastmod>${entry.lastmod}</lastmod>` : ""}${entry.changefreq ? `
+    <changefreq>${entry.changefreq}</changefreq>` : ""}${entry.priority ? `
+    <priority>${entry.priority}</priority>` : ""}
   </url>`;
   })
   .join("\n")}
 </urlset>`;
-};
-
-// Function to get all blog posts from the blog directory
-const getBlogPosts = (): SitemapPage[] => {
-  const blogDirectory = path.join(process.cwd(), "public", "blog");
-  
-  // Check if blog directory exists
-  if (!fs.existsSync(blogDirectory)) {
-    return [];
-  }
-
-  try {
-    const files = fs.readdirSync(blogDirectory);
-    
-    return files
-      .filter((file) => file.endsWith(".html") || file.endsWith(".md"))
-      .map((file) => {
-        const filePath = path.join(blogDirectory, file);
-        const stats = fs.statSync(filePath);
-        const slug = file.replace(/\.(html|md)$/, "");
-
-        return {
-          url: `${SITE_URL}/blog/${slug}`,
-          lastmod: stats.mtime.toISOString(),
-          changefreq: "monthly" as const,
-          priority: 0.7,
-        };
-      });
-  } catch (error) {
-    console.error("Error reading blog directory:", error);
-    return [];
-  }
-};
+}
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  // Get current date in ISO format
-  const currentDate = new Date().toISOString();
+  try {
+    const entries: SitemapEntry[] = [];
 
-  // Define static pages with their SEO metadata
-  const staticPages: SitemapPage[] = [
-    {
-      url: `${SITE_URL}/`,
-      lastmod: currentDate,
-      changefreq: "daily",
-      priority: 1.0,
-    },
-    {
-      url: `${SITE_URL}/about`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/services`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/how-we-help-individuals`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${SITE_URL}/resources`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${SITE_URL}/contact`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/report-scam`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 1.0,
-    },
-    {
-      url: `${SITE_URL}/case-studies`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${SITE_URL}/reviews`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-  ];
+    // Static pages with high priority
+    const staticPages = [
+      { path: "", priority: "1.0", changefreq: "daily" },
+      { path: "/about", priority: "0.9", changefreq: "monthly" },
+      { path: "/services", priority: "0.9", changefreq: "monthly" },
+      { path: "/contact", priority: "0.8", changefreq: "monthly" },
+      { path: "/how-we-help", priority: "0.8", changefreq: "monthly" },
+      { path: "/how-we-help-individuals", priority: "0.8", changefreq: "monthly" },
+      { path: "/case-studies", priority: "0.8", changefreq: "weekly" },
+      { path: "/reviews", priority: "0.7", changefreq: "weekly" },
+      { path: "/report-scam", priority: "0.9", changefreq: "monthly" },
+      { path: "/resources", priority: "0.7", changefreq: "weekly" },
+    ];
 
-  // Get dynamic blog posts
-  const blogPosts = getBlogPosts();
+    staticPages.forEach((page) => {
+      entries.push({
+        loc: `${DOMAIN}${page.path}`,
+        lastmod: new Date().toISOString().split("T")[0],
+        changefreq: page.changefreq,
+        priority: page.priority,
+      });
+    });
 
-  // Combine static pages and blog posts
-  const allPages = [...staticPages, ...blogPosts];
+    // Fetch published blog posts
+    const { data: blogPosts } = await supabase
+      .from("blog_posts")
+      .select("slug, updated_at, published_at")
+      .eq("status", "published")
+      .lte("published_at", new Date().toISOString())
+      .order("published_at", { ascending: false });
 
-  // Generate the XML sitemap
-  const sitemap = generateSiteMap(allPages);
+    if (blogPosts && blogPosts.length > 0) {
+      blogPosts.forEach((post) => {
+        entries.push({
+          loc: `${DOMAIN}/blog/${post.slug}`,
+          lastmod: post.updated_at || post.published_at,
+          changefreq: "weekly",
+          priority: "0.7",
+        });
+      });
+    }
 
-  // Set response headers
-  res.setHeader("Content-Type", "text/xml");
-  res.setHeader("Cache-Control", "public, s-maxage=86400, stale-while-revalidate");
+    // Fetch blog categories
+    const { data: categories } = await supabase
+      .from("blog_categories")
+      .select("slug")
+      .eq("is_active", true);
 
-  // Send the XML to the browser
-  res.write(sitemap);
-  res.end();
+    if (categories && categories.length > 0) {
+      categories.forEach((category) => {
+        entries.push({
+          loc: `${DOMAIN}/blog/category/${category.slug}`,
+          lastmod: new Date().toISOString().split("T")[0],
+          changefreq: "weekly",
+          priority: "0.6",
+        });
+      });
+    }
 
-  return {
-    props: {},
-  };
+    const sitemap = generateSiteMap(entries);
+
+    res.setHeader("Content-Type", "text/xml");
+    res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=86400"
+    );
+    res.write(sitemap);
+    res.end();
+
+    return {
+      props: {},
+    };
+  } catch (error) {
+    console.error("Error generating sitemap:", error);
+    
+    // Return minimal sitemap on error
+    const fallbackSitemap = generateSiteMap([
+      {
+        loc: DOMAIN,
+        lastmod: new Date().toISOString().split("T")[0],
+        changefreq: "daily",
+        priority: "1.0",
+      },
+    ]);
+
+    res.setHeader("Content-Type", "text/xml");
+    res.write(fallbackSitemap);
+    res.end();
+
+    return {
+      props: {},
+    };
+  }
 };
 
-export default function SitemapXML() {
-  // This component is never rendered as we return XML in getServerSideProps
+export default function Sitemap() {
   return null;
 }

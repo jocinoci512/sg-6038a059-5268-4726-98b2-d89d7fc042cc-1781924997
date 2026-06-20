@@ -92,6 +92,7 @@ export default function Document() {
         {/* Performance: DNS Prefetch */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <meta name="google-site-verification" content="RSvRSqLZoY9Z7WgAMBx-7DKpsxl44-Dk8cizHYYLDnU" />
       </Head>
       <body>
         <Main />

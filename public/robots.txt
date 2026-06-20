@@ -1,15 +1,37 @@
-# Robots.txt for Cipherstracer
-# https://cipherstracer.com
+# Cipherstracer - Robots.txt
+# https://cipherstracer.com/robots.txt
 
+# Allow all bots to access public pages
 User-agent: *
 Allow: /
+Allow: /about
+Allow: /services
+Allow: /contact
+Allow: /how-we-help
+Allow: /how-we-help-individuals
+Allow: /case-studies
+Allow: /reviews
+Allow: /report-scam
+Allow: /resources
+Allow: /blog/
 
-# Disallow admin and internal pages
+# Block admin area
 Disallow: /admin/
+Disallow: /admin/*
+Disallow: /api/admin/
+
+# Block client portal (if implemented)
+Disallow: /portal/
+Disallow: /portal/*
+
+# Block API routes (except public)
 Disallow: /api/
+
+# Block setup pages
+Disallow: /admin/setup
 
 # Sitemap location
 Sitemap: https://cipherstracer.com/sitemap.xml
 
-# Crawl-delay (optional, helps prevent server overload)
+# Crawl-delay (optional - helps prevent server overload)
 Crawl-delay: 1
