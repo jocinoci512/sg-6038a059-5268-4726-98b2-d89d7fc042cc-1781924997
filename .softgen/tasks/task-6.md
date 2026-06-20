@@ -1,6 +1,6 @@
 ---
 title: Knowledge Center Blog System with CMS
-status: in_progress
+status: done
 priority: high
 type: feature
 tags: [blog, cms, content]

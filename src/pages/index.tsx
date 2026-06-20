@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Link from "next/link";
 import { 
   Shield, Search, Network, TrendingUp, Users, Building, 
@@ -21,8 +22,48 @@ export default function HomePage() {
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
+    website: "" // Honeypot field
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact-homepage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          website: formData.website // Honeypot
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        setError(data.message || "Failed to send message. Please try again.");
+        setSubmitting(false);
+        return;
+      }
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", message: "", website: "" });
+    } catch (err) {
+      setError("An error occurred. Please try again or email us directly at support@cipherstracer.com");
+      setSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -748,6 +789,206 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* SECTION 10.5: FAQ Section */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto max-w-4xl px-4 md:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <Badge variant="outline" className="mb-4">FAQ</Badge>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-lg text-slate-600">
+                  Common questions about our blockchain investigation services
+                </p>
+              </div>
+
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    What services does Cipherstracer provide?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    Cipherstracer provides comprehensive blockchain investigation and digital asset intelligence services including cryptocurrency fraud investigation, wallet tracing, transaction analysis, asset recovery assistance, forensic evidence collection, and compliance support. We serve individuals, businesses, law enforcement agencies, and financial institutions worldwide.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-2">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    How does blockchain transaction analysis work?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    Our forensic platform traces cryptocurrency movements across blockchain networks by mapping transaction flows from wallet to wallet, identifying wallet clusters controlled by the same entity, determining when funds enter or exit exchanges, and analyzing patterns even through mixers and tumblers. We combine on-chain data with KYC information from exchanges (obtained through legal channels) to link addresses to real-world identities.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-3">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    What information do I need to start a case review?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    To begin, provide: (1) A detailed description of the incident or fraud, (2) All relevant cryptocurrency wallet addresses and transaction IDs, (3) Communications with the other party (emails, messages, screenshots), (4) Dates and amounts of transactions, and (5) Any documentation from exchanges or wallets involved. The more information you provide, the more effective our investigation will be.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-4">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    How long does an investigation take?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    Investigation timelines vary based on complexity. Initial case assessment typically takes 24-48 hours. Basic transaction tracing may be completed within 3-5 business days. Complex cases involving multiple blockchains, exchanges, or international actors can take 2-4 weeks. Emergency cases receive expedited processing with preliminary findings often available within 48 hours.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-5">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    Which blockchain networks do you support?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    We support comprehensive analysis across 50+ blockchain networks including Bitcoin, Ethereum, Binance Smart Chain, Tron, Litecoin, Bitcoin Cash, Ripple, Cardano, Polkadot, and 900+ cryptocurrencies. This includes ERC-20 tokens, stablecoins like USDT and USDC, and DeFi protocols. We also trace transactions through cross-chain bridges and decentralized exchanges.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-6">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    How is my information protected?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    All case data is protected with AES-256 military-grade encryption both at rest and in transit. We apply attorney-client privilege protocols where applicable and never share case details without explicit consent. Our systems are SOC 2 Type II certified and comply with GDPR, CCPA, and international data protection standards. Multi-region redundant backups ensure data integrity with strict access controls and comprehensive audit logging.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-7">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    Do you provide investigation reports?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    Yes. We provide detailed forensic reports with complete transaction documentation, wallet attribution evidence, visual transaction flow diagrams, and expert analysis. Reports meet evidentiary standards for criminal and civil proceedings worldwide. We can also provide expert witness testimony and technical consultation for legal teams when required.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-8">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    Can businesses use your services?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    Absolutely. We serve cryptocurrency exchanges, financial institutions, compliance teams, legal professionals, and businesses requiring blockchain intelligence. Our enterprise services include AML/KYC compliance support, transaction monitoring, security audits, custom intelligence solutions, and professional training programs. We work with 200+ exchanges and institutions globally.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-9">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    What happens after I submit a contact request?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    After submission, you'll receive an automated confirmation email. Within 24 hours, a case specialist will review your inquiry and contact you to discuss your situation in detail. If you qualify for our services, we'll provide a clear proposal outlining scope, timeline, and costs. Emergency cases receive priority response within 2-4 hours.
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-10">
+                  <AccordionTrigger className="text-left text-lg font-semibold">
+                    How do I speak with a specialist?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                    Contact us via email at support@cipherstracer.com, phone at +1 (940) 560-9662, or submit the consultation form on this page. For urgent matters requiring immediate attention, call our emergency hotline. Our team is available 24/7 to assist with critical cases. All initial consultations are confidential.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+
+            {/* FAQ Schema for SEO */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  "mainEntity": [
+                    {
+                      "@type": "Question",
+                      "name": "What services does Cipherstracer provide?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Cipherstracer provides comprehensive blockchain investigation and digital asset intelligence services including cryptocurrency fraud investigation, wallet tracing, transaction analysis, asset recovery assistance, forensic evidence collection, and compliance support."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "How does blockchain transaction analysis work?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Our forensic platform traces cryptocurrency movements across blockchain networks by mapping transaction flows from wallet to wallet, identifying wallet clusters, determining exchange activity, and analyzing patterns even through mixers and tumblers."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "What information do I need to start a case review?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Provide: (1) A detailed description of the incident, (2) Cryptocurrency wallet addresses and transaction IDs, (3) Communications with the other party, (4) Dates and amounts of transactions, and (5) Documentation from exchanges or wallets involved."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "How long does an investigation take?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Initial case assessment: 24-48 hours. Basic tracing: 3-5 business days. Complex cases: 2-4 weeks. Emergency cases receive expedited processing with preliminary findings within 48 hours."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "Which blockchain networks do you support?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "We support 50+ blockchain networks including Bitcoin, Ethereum, Binance Smart Chain, Tron, and 900+ cryptocurrencies including ERC-20 tokens, stablecoins, and DeFi protocols."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "How is my information protected?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "All case data is protected with AES-256 military-grade encryption. We're SOC 2 Type II certified and comply with GDPR, CCPA, and international data protection standards with strict access controls and audit logging."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "Do you provide investigation reports?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. We provide detailed forensic reports with transaction documentation, wallet attribution evidence, visual diagrams, and expert analysis that meet evidentiary standards for legal proceedings worldwide."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "Can businesses use your services?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. We serve exchanges, financial institutions, compliance teams, and businesses with AML/KYC compliance support, transaction monitoring, security audits, and custom intelligence solutions."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "What happens after I submit a contact request?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "You'll receive an automated confirmation. Within 24 hours, a specialist will review your inquiry and contact you. Emergency cases receive priority response within 2-4 hours."
+                      }
+                    },
+                    {
+                      "@type": "Question",
+                      "name": "How do I speak with a specialist?",
+                      "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Contact us via email at support@cipherstracer.com, phone at +1 (940) 560-9662, or submit the consultation form. Our team is available 24/7 for critical cases."
+                      }
+                    }
+                  ]
+                })
+              }}
+            />
+          </section>
+
           {/* SECTION 11: Final Call to Action */}
           <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
             <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
@@ -804,44 +1045,81 @@ export default function HomePage() {
                     <CardDescription>Fill out the form below and our team will contact you within 24 hours.</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <form className="space-y-4">
-                      <div>
-                        <Input 
-                          placeholder="Full Name" 
-                          value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                        />
+                    {submitted ? (
+                      <div className="text-center py-8">
+                        <CheckCircle className="h-16 w-16 text-green-600 mx-auto mb-4" />
+                        <h3 className="text-xl font-bold text-slate-900 mb-2">Thank You!</h3>
+                        <p className="text-slate-600">Your message has been sent successfully. Our team will respond within 24 hours.</p>
                       </div>
-                      <div>
-                        <Input 
-                          type="email" 
-                          placeholder="Email Address" 
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        />
-                      </div>
-                      <div>
-                        <Input 
-                          type="tel" 
-                          placeholder="Phone Number" 
-                          value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                        />
-                      </div>
-                      <div>
-                        <Textarea 
-                          placeholder="Brief description of your case..." 
-                          rows={4}
-                          value={formData.message}
-                          onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        />
-                      </div>
-                      <Button asChild size="lg" className="w-full">
-                        <Link href="/contact">
-                          Submit Request <Send className="ml-2 h-5 w-5" />
-                        </Link>
-                      </Button>
-                    </form>
+                    ) : (
+                      <form onSubmit={handleSubmit} className="space-y-4">
+                        {/* Honeypot field - hidden from users */}
+                        <div style={{ position: 'absolute', left: '-9999px' }}>
+                          <Input
+                            type="text"
+                            name="website"
+                            tabIndex={-1}
+                            autoComplete="off"
+                            value={formData.website}
+                            onChange={(e) => setFormData({...formData, website: e.target.value})}
+                          />
+                        </div>
+
+                        <div>
+                          <Input 
+                            placeholder="Full Name *" 
+                            required
+                            value={formData.name}
+                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            disabled={submitting}
+                          />
+                        </div>
+                        <div>
+                          <Input 
+                            type="email" 
+                            placeholder="Email Address *" 
+                            required
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            disabled={submitting}
+                          />
+                        </div>
+                        <div>
+                          <Input 
+                            type="tel" 
+                            placeholder="Phone Number *" 
+                            required
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            disabled={submitting}
+                          />
+                        </div>
+                        <div>
+                          <Textarea 
+                            placeholder="Brief description of your case... *" 
+                            rows={4}
+                            required
+                            value={formData.message}
+                            onChange={(e) => setFormData({...formData, message: e.target.value})}
+                            disabled={submitting}
+                          />
+                        </div>
+
+                        {error && (
+                          <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">
+                            {error}
+                          </div>
+                        )}
+
+                        <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+                          {submitting ? (
+                            <>Processing...</>
+                          ) : (
+                            <>Submit Request <Send className="ml-2 h-5 w-5" /></>
+                          )}
+                        </Button>
+                      </form>
+                    )}
                   </CardContent>
                 </Card>
               </div>

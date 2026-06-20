@@ -1,6 +1,6 @@
 ---
 title: Homepage FAQ Section with Accordion
-status: in_progress
+status: done
 priority: medium
 type: feature
 tags: [homepage, faq, seo]
@@ -13,12 +13,12 @@ position: 8
 Add a professional accordion-style FAQ section to the homepage with 10 questions covering services, investigation process, supported networks, data protection, and consultation process. Include FAQ schema for SEO.
 
 ## Checklist
-- [ ] Add new FAQ section to homepage (between testimonials and final CTA)
-- [ ] Use shadcn Accordion component with smooth animations
-- [ ] Add all 10 FAQs with comprehensive answers
-- [ ] Implement FAQ schema (JSON-LD) for SEO
-- [ ] Ensure mobile responsiveness
-- [ ] Match existing website design and styling
+- [x] Add new FAQ section to homepage (between testimonials and final CTA)
+- [x] Use shadcn Accordion component with smooth animations
+- [x] Add all 10 FAQs with comprehensive answers
+- [x] Implement FAQ schema (JSON-LD) for SEO
+- [x] Ensure mobile responsiveness
+- [x] Match existing website design and styling
 
 ## Acceptance
 - FAQ section displays on homepage with professional styling
