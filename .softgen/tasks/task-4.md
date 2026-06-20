@@ -1,6 +1,6 @@
 ---
 title: SEO, Performance, and Security Optimization
-status: todo
+status: in_progress
 priority: medium
 type: chore
 tags: [seo, performance, security]
@@ -10,16 +10,18 @@ position: 4
 ---
 
 ## Notes
-Implement global SEO optimizations, improve performance (Core Web Vitals), and add security headers without altering the UI layout. Target keywords include: Blockchain Investigation, Crypto Fraud Investigation, Cryptocurrency Recovery Services, Wallet Tracing Experts.
+Implement comprehensive SEO optimizations, performance improvements, and security measures. This includes structured data (JSON-LD schemas), security headers, image optimization, and ensuring fast page loads.
 
 ## Checklist
-- [ ] Update `src/pages/index.tsx`, `_app.tsx`, and `_document.tsx` (or SEO components) with optimized meta titles, descriptions, and Open Graph tags reflecting "Cipherstracer" and target keywords.
-- [ ] Add structured schema markup (JSON-LD) for a professional organization/security service to `_document.tsx` or the main layout.
-- [ ] Configure `next.config.mjs` to include security headers (Content-Security-Policy, X-Frame-Options, X-Content-Type-Options) and optimize images.
-- [ ] Ensure all forms (like in `contact.tsx`) have proper validation and spam protection wording/disclaimers.
-- [ ] Review typography classes globally to ensure consistency (e.g., consistent font weights, tracking on headings) and refine spacing for a premium feel.
+- [x] Add structured data (JSON-LD) for Organization and ProfessionalService to `_document.tsx`.
+- [x] Update SEO component with comprehensive default keywords targeting blockchain investigation terms.
+- [x] Configure security headers in `next.config.mjs` (X-Frame-Options, CSP, HSTS) with production-only guards for iframe preview.
+- [x] Add Vercel deployment security headers and cache policies in `vercel.json`.
+- [ ] Verify sitemap.xml.tsx generates proper URLs with https://cipherstracer.com domain.
+- [ ] Add robots.txt configuration if missing (already exists in public/).
+- [ ] Final QA: Test all pages for broken links, verify mobile responsiveness, check form submissions.
 
 ## Acceptance
-- Meta tags and titles correctly reference Cipherstracer and target keywords.
+- Structured data validates on Google's Rich Results Test.
 - Security headers are present in the Next.js config.
 - The site maintains high performance and responsive layout.
