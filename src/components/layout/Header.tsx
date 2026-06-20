@@ -23,6 +23,19 @@ import { supabase } from "@/integrations/supabase/client";
 
 type BlogPost = Tables<"blog_posts">;
 
+type BlogPostWithCategory = {
+  id: string;
+  title: string;
+  slug: string;
+  content: string | null;
+  category_id: string | null;
+  blog_categories: {
+    id: string;
+    name: string;
+    slug: string;
+  } | null;
+};
+
 // Services list for search
 const SERVICES = [
   { title: "Cryptocurrency AML Compliance", slug: "services", description: "Sentry and Traveler solutions for compliance" },
@@ -37,9 +50,9 @@ export default function Header() {
   const whatsappUrl = "https://wa.me/19405609662?text=Hello%2C%20I%20need%20help%20with%20a%20crypto%20fraud%20case.";
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  const [blogPosts, setBlogPosts] = useState<BlogPostWithCategory[]>([]);
   const [searchResults, setSearchResults] = useState<{
-    blogs: BlogPost[];
+    blogs: BlogPostWithCategory[];
     services: typeof SERVICES;
   }>({ blogs: [], services: [] });
 
@@ -66,7 +79,7 @@ export default function Header() {
         .limit(6);
 
       if (data) {
-        setBlogPosts(data);
+        setBlogPosts(data as BlogPostWithCategory[]);
       }
     }
 
@@ -74,10 +87,10 @@ export default function Header() {
   }, []);
 
   const categories = blogPosts
-    .map((post) => (post as any).blog_categories)
+    .map((post) => post.blog_categories)
     .filter((category) => category != null)
     .filter((category, index, self) =>
-      index === self.findIndex((c: any) => c?.slug === category?.slug)
+      index === self.findIndex((c) => c?.slug === category?.slug)
     );
 
   // Search function
@@ -173,7 +186,7 @@ export default function Header() {
                           <div className="flex-1">
                             <div className="font-medium">{post.title}</div>
                             {post.blog_categories && (
-                              <div className="text-xs text-slate-500">{(post.blog_categories as any).name}</div>
+                              <div className="text-xs text-slate-500">{post.blog_categories.name}</div>
                             )}
                           </div>
                         </CommandItem>
