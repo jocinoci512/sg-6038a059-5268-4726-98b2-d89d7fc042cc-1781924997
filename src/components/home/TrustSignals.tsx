@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Shield, Globe, Users, TrendingUp, Award, CheckCircle, Clock, Star, Heart, MapPin, Zap } from "lucide-react";
+import { Shield, Globe, Users, TrendingUp, Award, CheckCircle, Clock, Star, Heart, MapPin, Zap, Building, Lock, Database } from "lucide-react";
 
 const trustMetrics = [
   {
@@ -45,10 +45,26 @@ const realTimeStats = [
 ];
 
 const certifications = [
-  { name: "SOC 2 Type II Certified", icon: "🔒", description: "Highest security standards" },
-  { name: "ISO 27001 Compliant", icon: "🛡️", description: "International security certification" },
-  { name: "GDPR Compliant", icon: "🇪🇺", description: "European data protection" },
-  { name: "FINRA Regulated", icon: "⚖️", description: "Financial industry compliance" }
+  { name: "SOC 2 Type II Certified", icon: "🔒", description: "Enterprise security compliance" },
+  { name: "ISO 27001 Compliant", icon: "🛡️", description: "International security standard" },
+  { name: "GDPR & CCPA Compliant", icon: "🇪🇺", description: "Privacy regulation adherence" },
+  { name: "PCI DSS Certified", icon: "💳", description: "Payment security standard" },
+  { name: "FinCEN Registered", icon: "⚖️", description: "Financial crimes enforcement" },
+  { name: "AUSTRAC Compliant", icon: "🇦🇺", description: "Australian transaction reporting" }
+];
+
+const complianceStandards = [
+  { name: "Bank Secrecy Act (BSA)", region: "United States" },
+  { name: "5th Anti-Money Laundering Directive (5AMLD)", region: "European Union" },
+  { name: "Proceeds of Crime Act (POCA)", region: "United Kingdom" },
+  { name: "Anti-Money Laundering Act", region: "Australia" }
+];
+
+const industryPartnerships = [
+  { name: "Law Enforcement Agencies", count: "150+", icon: Shield },
+  { name: "Financial Institutions", count: "85+", icon: Building },
+  { name: "Regulatory Bodies", count: "40+", icon: Award },
+  { name: "Cryptocurrency Exchanges", count: "200+", icon: TrendingUp }
 ];
 
 const globalPresence = [
@@ -197,16 +213,19 @@ export default function TrustSignals() {
           </div>
         </div>
 
-        {/* Enterprise Security & Compliance */}
+        {/* Enterprise Security & Compliance - Enhanced */}
         <div className="bg-gradient-to-r from-white to-blue-50 rounded-2xl p-8 shadow-lg border-2 border-blue-100">
           <div className="flex flex-col items-center">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+            <h3 className="text-2xl font-bold text-slate-900 mb-2 flex items-center">
               <Award className="h-7 w-7 text-blue-600 mr-3" />
-              🛡️ Enterprise Security & Compliance
+              Enterprise Security & Global Compliance
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+            <p className="text-sm text-slate-600 mb-6 text-center max-w-2xl">
+              Cipherstracer maintains the highest industry security standards and complies with international regulations across all jurisdictions where we operate.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 w-full mb-8">
               {certifications.map((cert, index) => (
-                <div key={index} className="flex items-center bg-white rounded-lg p-4 shadow-sm border">
+                <div key={index} className="flex items-center bg-white rounded-lg p-4 shadow-sm border hover:border-blue-300 transition-colors">
                   <div className="text-2xl mr-3">{cert.icon}</div>
                   <div>
                     <div className="text-sm font-semibold text-slate-900 mb-1">{cert.name}</div>
@@ -214,6 +233,63 @@ export default function TrustSignals() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* AML Compliance Standards */}
+            <div className="w-full bg-white rounded-xl p-6 shadow-sm border border-slate-200">
+              <h4 className="text-lg font-bold text-slate-900 mb-4 flex items-center">
+                <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                Anti-Money Laundering (AML) Compliance
+              </h4>
+              <div className="grid md:grid-cols-2 gap-3">
+                {complianceStandards.map((standard, index) => (
+                  <div key={index} className="flex items-start gap-2 text-sm">
+                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-medium text-slate-900">{standard.name}</span>
+                      <span className="text-slate-600"> — {standard.region}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Industry Partnerships & Trust Network */}
+        <div className="grid md:grid-cols-4 gap-6">
+          {industryPartnerships.map((partner, index) => (
+            <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+              <CardContent className="pt-6">
+                <partner.icon className="h-10 w-10 text-blue-600 mx-auto mb-3" />
+                <div className="text-3xl font-bold text-slate-900 mb-1">{partner.count}</div>
+                <div className="text-sm text-slate-600">{partner.name}</div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Data Security & Confidentiality Commitment */}
+        <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-8 text-white shadow-xl">
+          <div className="max-w-4xl mx-auto text-center">
+            <Lock className="h-12 w-12 text-blue-400 mx-auto mb-4" />
+            <h3 className="text-2xl font-bold mb-4">Your Data Security is Our Priority</h3>
+            <div className="grid md:grid-cols-3 gap-6 mt-6">
+              <div>
+                <Shield className="h-8 w-8 text-blue-400 mx-auto mb-2" />
+                <h4 className="font-semibold mb-2">End-to-End Encryption</h4>
+                <p className="text-sm text-slate-300">All case data encrypted with AES-256 military-grade encryption at rest and in transit.</p>
+              </div>
+              <div>
+                <Lock className="h-8 w-8 text-blue-400 mx-auto mb-2" />
+                <h4 className="font-semibold mb-2">Strict Confidentiality</h4>
+                <p className="text-sm text-slate-300">Attorney-client privilege protocols applied to all investigations. Your case details never shared.</p>
+              </div>
+              <div>
+                <Database className="h-8 w-8 text-blue-400 mx-auto mb-2" />
+                <h4 className="font-semibold mb-2">Secure Data Storage</h4>
+                <p className="text-sm text-slate-300">Multi-region redundant backups with access controls and audit logging.</p>
+              </div>
             </div>
           </div>
         </div>

@@ -46,25 +46,30 @@ export function HeroSection() {
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Cipherstracer: Expert Blockchain Investigation & Asset Recovery
+            Professional Blockchain Investigation & Digital Asset Recovery
           </h1>
           
           <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl leading-relaxed">
-            Advanced blockchain forensics and cryptocurrency tracing to recover stolen digital assets and combat fraud.
+            Advanced blockchain forensics and cryptocurrency fraud investigation trusted by law enforcement, financial institutions, and scam victims worldwide. Expert asset tracing with proven results.
           </p>
 
-          {/* Live Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {liveStats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div key={index} className="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
-                  <Icon className={`h-5 w-5 ${stat.color} mb-2`} />
-                  <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-xs text-blue-200">{stat.label}</div>
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-4xl">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+              <div className="text-2xl md:text-3xl font-bold text-white mb-1">$2.8B+</div>
+              <div className="text-sm text-blue-100">Assets Recovered</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+              <div className="text-2xl md:text-3xl font-bold text-white mb-1">85+</div>
+              <div className="text-sm text-blue-100">Countries Served</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+              <div className="text-2xl md:text-3xl font-bold text-white mb-1">150+</div>
+              <div className="text-sm text-blue-100">Law Enforcement Partners</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+              <div className="text-2xl md:text-3xl font-bold text-white mb-1">24/7</div>
+              <div className="text-sm text-blue-100">Expert Support</div>
+            </div>
           </div>
 
           {/* CTAs */}

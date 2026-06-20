@@ -1,46 +1,33 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, Search, AlertTriangle, Eye, Zap, Users } from "lucide-react";
+import { Shield, Search, AlertTriangle, Eye, Zap, Users, SearchCode, ShieldCheck, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function ServicesOverview() {
   const services = [
     {
-      icon: Shield,
-      title: "AML Compliance",
-      description: "Comprehensive anti-money laundering solutions including Sentry and Traveler for regulatory compliance.",
-      features: ["Real-time monitoring", "Regulatory reporting", "Risk assessment"]
+      icon: SearchCode,
+      title: "Blockchain Forensic Investigation",
+      description: "Advanced transaction tracing and wallet analysis across all major blockchains. We identify, track, and document cryptocurrency movements with forensic-grade precision for legal proceedings.",
+      link: "/services"
     },
     {
-      icon: Search,
-      title: "Blockchain Forensics",
-      description: "Advanced Inspector tools for investigating cryptocurrency transactions and tracing digital assets.",
-      features: ["Transaction analysis", "Address clustering", "Fund flow tracking"]
-    },
-    {
-      icon: AlertTriangle,
-      title: "Threat Intelligence",
-      description: "Armada platform providing comprehensive threat detection and analysis for crypto security.",
-      features: ["Threat monitoring", "Risk scoring", "Intelligence feeds"]
-    },
-    {
-      icon: Eye,
-      title: "De-Anonymization",
-      description: "Cutting-edge tools to identify entities behind cryptocurrency addresses and transactions.",
-      features: ["Entity identification", "Address attribution", "Privacy analysis"]
-    },
-    {
-      icon: Zap,
-      title: "Ransomware Detection",
-      description: "Specialized detection and tracking of ransomware-related cryptocurrency transactions.",
-      features: ["Ransomware tracking", "Payment analysis", "Attribution support"]
+      icon: ShieldCheck,
+      title: "Digital Asset Recovery Services",
+      description: "Expert recovery assistance for stolen cryptocurrency and digital assets. Our investigation team works directly with exchanges and law enforcement to freeze accounts and recover funds.",
+      link: "/how-we-help-individuals"
     },
     {
       icon: Users,
-      title: "Individual Support",
-      description: "Dedicated services for individuals affected by crypto scams and fraud.",
-      features: ["Scam recovery", "Asset tracing", "Legal support"]
+      title: "Fraud Investigation & Analysis",
+      description: "Comprehensive investigation of cryptocurrency scams including romance fraud, investment schemes, Ponzi operations, and exit scams. Detailed evidence compilation for prosecution.",
+      link: "/services"
+    },
+    {
+      icon: AlertCircle,
+      title: "Risk Assessment & Due Diligence",
+      description: "Pre-transaction blockchain analysis and counterparty verification. Protect your investments with professional due diligence before committing funds to projects or platforms.",
+      link: "/contact"
     }
   ];
 

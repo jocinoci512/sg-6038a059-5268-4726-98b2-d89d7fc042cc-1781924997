@@ -13,13 +13,14 @@ position: 2
 Upgrade the copywriting on the Homepage to sound authoritative, credible, and enterprise-grade. Integrate trust and credibility features within the existing component structures without breaking the layout.
 
 ## Checklist
-- [ ] Rewrite HeroSection copy to reflect premium digital asset recovery and blockchain investigation. Use industry-specific, authoritative language.
-- [ ] Enhance TrustSignals component: Add professional disclaimers, data security commitments, and compliance standards (within the existing layout).
-- [ ] Update HowWeHelp and SuccessStories components: Replace generic wording with concrete client success metrics, investigation methodology overviews, and professional terminology.
-- [ ] Enhance Video Testimonials Section: Update text to reflect enterprise-grade case management and confidentiality.
-- [ ] Polish animations and typography spacing in these components to feel more premium and professional.
+- [x] Enhance TrustSignals component: Add specific certifications (ISO 27001, SOC 2, GDPR, FinCEN), compliance standards (BSA, 5AMLD, POCA), and data security commitments.
+- [x] Improve HeroSection messaging: Strengthen value propositions with professional language, specific outcome promises, and authoritative positioning.
+- [x] Upgrade ServicesOverview descriptions: Make each service description outcome-focused, professional, and specific to what clients get.
+- [ ] Add professional disclaimers and confidentiality statements to Footer if not already present.
 
 ## Acceptance
-- Homepage copy sounds like a premium enterprise security firm.
-- Trust elements (methodology, compliance) are visible and professionally formatted.
+- Trust signals show enterprise-grade certifications and compliance (not generic).
+- Hero section communicates authority and specific outcomes.
+- Service descriptions are detailed, professional, and avoid generic AI language.
+- All new content and trust features (certifications, compliance) are visible and professionally formatted.
 - Existing layout and structure remain intact.
