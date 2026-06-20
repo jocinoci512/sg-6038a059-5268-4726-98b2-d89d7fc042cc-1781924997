@@ -3,14 +3,14 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
 // Read from environment variables instead of hardcoding tokens
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const SUPABASE_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const SUPABASE_PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-// Create a safe client - if env vars are missing, create a placeholder
-// This prevents SSR crashes while allowing the app to load
-export const supabase = SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY
-  ? createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY)
-  : createClient<Database>('https://placeholder.supabase.co', 'placeholder-key');
+if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+  throw new Error('Missing Supabase environment variables. Please check your .env.local file.');
+}
 
-// Check if Supabase is properly configured
-export const isSupabaseConfigured = Boolean(SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY);
+// Import the supabase client like this:
+// import { supabase } from "@/integrations/supabase/client";
+
+export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
