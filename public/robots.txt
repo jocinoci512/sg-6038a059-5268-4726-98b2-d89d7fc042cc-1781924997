@@ -1,15 +1,15 @@
-# Robots.txt for CipherTrace
-# Allow all search engines to crawl the site
+# Robots.txt for Cipherstracer
+# https://cipherstracer.com
 
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://ciphertracers.com/sitemap.xml
-
-# Disallow admin pages from being indexed
+# Disallow admin and internal pages
 Disallow: /admin/
 Disallow: /api/
 
-# Crawl-delay for polite crawlers
+# Sitemap location
+Sitemap: https://cipherstracer.com/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
 Crawl-delay: 1

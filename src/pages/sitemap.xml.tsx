@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import fs from "fs";
 import path from "path";
 
-const SITE_URL = "https://ciphertracers.com";
+const SITE_URL = "https://cipherstracer.com";
 
 interface SitemapPage {
   url: string;
