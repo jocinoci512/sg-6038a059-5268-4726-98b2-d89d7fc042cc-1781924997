@@ -19,9 +19,11 @@ Build a comprehensive admin dashboard at /admin with full website management cap
 - [x] Create contact inquiry management (MessagesSection component)
 - [x] Create analytics dashboard section
 - [x] Create newsletter subscriber management (view, search, export)
+- [x] Create blog management (create, edit, publish, schedule posts)
+- [x] Create FAQ management (create, edit, reorder, activate/deactivate)
+- [x] Create admin setup page for creating first admin user
+- [x] Homepage FAQ section now loads dynamically from database
 - [ ] Create case management interface (view, update status, assign, communicate)
-- [ ] Create blog management (create, edit, publish, schedule posts)
-- [ ] Create FAQ management (create, edit, reorder, activate/deactivate)
 - [ ] Create media library interface (upload, organize, delete files)
 - [ ] Create website settings editor
 - [ ] Add comprehensive role-based access control

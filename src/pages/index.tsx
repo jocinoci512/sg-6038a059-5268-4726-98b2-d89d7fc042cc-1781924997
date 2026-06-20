@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -7,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { supabase } from "@/integrations/supabase/client";
 import Link from "next/link";
 import { 
   Shield, Search, Network, TrendingUp, Users, Building, 
@@ -15,7 +17,6 @@ import {
   BarChart3, Cpu, Activity, Target, Award, Clock,
   Mail, Phone, Send, Play, ChevronRight, Sparkles
 } from "lucide-react";
-import { useState } from "react";
 
 export default function HomePage() {
   const [formData, setFormData] = useState({
@@ -28,6 +29,23 @@ export default function HomePage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [faqs, setFaqs] = useState<any[]>([]);
+
+  // Load FAQs from database
+  useEffect(() => {
+    async function loadFAQs() {
+      const { data } = await supabase
+        .from("faqs")
+        .select("*")
+        .eq("is_active", true)
+        .order("display_order", { ascending: true });
+
+      if (data) {
+        setFaqs(data);
+      }
+    }
+    loadFAQs();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,6 +81,20 @@ export default function HomePage() {
       setError("An error occurred. Please try again or email us directly at support@cipherstracer.com");
       setSubmitting(false);
     }
+  };
+
+  // Generate FAQ schema for SEO
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
   };
 
   return (
@@ -802,191 +834,35 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="item-1">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    What services does Cipherstracer provide?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    Cipherstracer provides comprehensive blockchain investigation and digital asset intelligence services including cryptocurrency fraud investigation, wallet tracing, transaction analysis, asset recovery assistance, forensic evidence collection, and compliance support. We serve individuals, businesses, law enforcement agencies, and financial institutions worldwide.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-2">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    How does blockchain transaction analysis work?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    Our forensic platform traces cryptocurrency movements across blockchain networks by mapping transaction flows from wallet to wallet, identifying wallet clusters controlled by the same entity, determining when funds enter or exit exchanges, and analyzing patterns even through mixers and tumblers. We combine on-chain data with KYC information from exchanges (obtained through legal channels) to link addresses to real-world identities.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-3">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    What information do I need to start a case review?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    To begin, provide: (1) A detailed description of the incident or fraud, (2) All relevant cryptocurrency wallet addresses and transaction IDs, (3) Communications with the other party (emails, messages, screenshots), (4) Dates and amounts of transactions, and (5) Any documentation from exchanges or wallets involved. The more information you provide, the more effective our investigation will be.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-4">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    How long does an investigation take?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    Investigation timelines vary based on complexity. Initial case assessment typically takes 24-48 hours. Basic transaction tracing may be completed within 3-5 business days. Complex cases involving multiple blockchains, exchanges, or international actors can take 2-4 weeks. Emergency cases receive expedited processing with preliminary findings often available within 48 hours.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-5">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    Which blockchain networks do you support?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    We support comprehensive analysis across 50+ blockchain networks including Bitcoin, Ethereum, Binance Smart Chain, Tron, Litecoin, Bitcoin Cash, Ripple, Cardano, Polkadot, and 900+ cryptocurrencies. This includes ERC-20 tokens, stablecoins like USDT and USDC, and DeFi protocols. We also trace transactions through cross-chain bridges and decentralized exchanges.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-6">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    How is my information protected?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    All case data is protected with AES-256 military-grade encryption both at rest and in transit. We apply attorney-client privilege protocols where applicable and never share case details without explicit consent. Our systems are SOC 2 Type II certified and comply with GDPR, CCPA, and international data protection standards. Multi-region redundant backups ensure data integrity with strict access controls and comprehensive audit logging.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-7">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    Do you provide investigation reports?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    Yes. We provide detailed forensic reports with complete transaction documentation, wallet attribution evidence, visual transaction flow diagrams, and expert analysis. Reports meet evidentiary standards for criminal and civil proceedings worldwide. We can also provide expert witness testimony and technical consultation for legal teams when required.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-8">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    Can businesses use your services?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    Absolutely. We serve cryptocurrency exchanges, financial institutions, compliance teams, legal professionals, and businesses requiring blockchain intelligence. Our enterprise services include AML/KYC compliance support, transaction monitoring, security audits, custom intelligence solutions, and professional training programs. We work with 200+ exchanges and institutions globally.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-9">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    What happens after I submit a contact request?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    After submission, you'll receive an automated confirmation email. Within 24 hours, a case specialist will review your inquiry and contact you to discuss your situation in detail. If you qualify for our services, we'll provide a clear proposal outlining scope, timeline, and costs. Emergency cases receive priority response within 2-4 hours.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-10">
-                  <AccordionTrigger className="text-left text-lg font-semibold">
-                    How do I speak with a specialist?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-600 text-base leading-relaxed">
-                    Contact us via email at support@cipherstracer.com, phone at +1 (940) 560-9662, or submit the consultation form on this page. For urgent matters requiring immediate attention, call our emergency hotline. Our team is available 24/7 to assist with critical cases. All initial consultations are confidential.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              {faqs.length > 0 ? (
+                <Accordion type="single" collapsible className="w-full">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem key={faq.id} value={`item-${index + 1}`}>
+                      <AccordionTrigger className="text-left text-lg font-semibold">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-slate-600 text-base leading-relaxed">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              ) : (
+                <div className="text-center text-slate-500 py-8">
+                  Loading FAQs...
+                </div>
+              )}
             </div>
 
             {/* FAQ Schema for SEO */}
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "FAQPage",
-                  "mainEntity": [
-                    {
-                      "@type": "Question",
-                      "name": "What services does Cipherstracer provide?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Cipherstracer provides comprehensive blockchain investigation and digital asset intelligence services including cryptocurrency fraud investigation, wallet tracing, transaction analysis, asset recovery assistance, forensic evidence collection, and compliance support."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "How does blockchain transaction analysis work?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Our forensic platform traces cryptocurrency movements across blockchain networks by mapping transaction flows from wallet to wallet, identifying wallet clusters, determining exchange activity, and analyzing patterns even through mixers and tumblers."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "What information do I need to start a case review?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Provide: (1) A detailed description of the incident, (2) Cryptocurrency wallet addresses and transaction IDs, (3) Communications with the other party, (4) Dates and amounts of transactions, and (5) Documentation from exchanges or wallets involved."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "How long does an investigation take?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Initial case assessment: 24-48 hours. Basic tracing: 3-5 business days. Complex cases: 2-4 weeks. Emergency cases receive expedited processing with preliminary findings within 48 hours."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "Which blockchain networks do you support?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "We support 50+ blockchain networks including Bitcoin, Ethereum, Binance Smart Chain, Tron, and 900+ cryptocurrencies including ERC-20 tokens, stablecoins, and DeFi protocols."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "How is my information protected?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "All case data is protected with AES-256 military-grade encryption. We're SOC 2 Type II certified and comply with GDPR, CCPA, and international data protection standards with strict access controls and audit logging."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "Do you provide investigation reports?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes. We provide detailed forensic reports with transaction documentation, wallet attribution evidence, visual diagrams, and expert analysis that meet evidentiary standards for legal proceedings worldwide."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "Can businesses use your services?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes. We serve exchanges, financial institutions, compliance teams, and businesses with AML/KYC compliance support, transaction monitoring, security audits, and custom intelligence solutions."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "What happens after I submit a contact request?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "You'll receive an automated confirmation. Within 24 hours, a specialist will review your inquiry and contact you. Emergency cases receive priority response within 2-4 hours."
-                      }
-                    },
-                    {
-                      "@type": "Question",
-                      "name": "How do I speak with a specialist?",
-                      "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Contact us via email at support@cipherstracer.com, phone at +1 (940) 560-9662, or submit the consultation form. Our team is available 24/7 for critical cases."
-                      }
-                    }
-                  ]
-                })
-              }}
-            />
+            {faqs.length > 0 && (
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify(faqSchema)
+                }}
+              />
+            )}
           </section>
 
           {/* SECTION 11: Final Call to Action */}

@@ -5,6 +5,8 @@ import { AdminLayout } from "@/components/admin/AdminLayout";
 import { AnalyticsSection } from "@/components/admin/AnalyticsSection";
 import { MessagesSection } from "@/components/admin/MessagesSection";
 import { NewsletterSection } from "@/components/admin/NewsletterSection";
+import { BlogManagementSection } from "@/components/admin/BlogManagementSection";
+import { FAQManagementSection } from "@/components/admin/FAQManagementSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { authService } from "@/services/authService";
 import { Loader2 } from "lucide-react";
@@ -72,14 +74,23 @@ export default function AdminDashboard() {
           <Tabs defaultValue="overview" className="space-y-6">
             <TabsList>
               <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="blog">Blog</TabsTrigger>
+              <TabsTrigger value="faqs">FAQs</TabsTrigger>
               <TabsTrigger value="messages">Messages</TabsTrigger>
               <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
-              <TabsTrigger value="blog">Blog</TabsTrigger>
               <TabsTrigger value="cases">Cases</TabsTrigger>
             </TabsList>
 
             <TabsContent value="overview" className="space-y-6">
               <AnalyticsSection />
+            </TabsContent>
+
+            <TabsContent value="blog">
+              <BlogManagementSection />
+            </TabsContent>
+
+            <TabsContent value="faqs">
+              <FAQManagementSection />
             </TabsContent>
 
             <TabsContent value="messages">
@@ -88,12 +99,6 @@ export default function AdminDashboard() {
 
             <TabsContent value="newsletter">
               <NewsletterSection />
-            </TabsContent>
-
-            <TabsContent value="blog">
-              <div className="text-center py-12 text-slate-600">
-                Blog management interface coming soon
-              </div>
             </TabsContent>
 
             <TabsContent value="cases">
