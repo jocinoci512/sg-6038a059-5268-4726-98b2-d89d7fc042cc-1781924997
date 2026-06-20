@@ -1,0 +1,19 @@
+# Blog Posts Directory
+
+This directory contains blog posts that are automatically included in the sitemap.xml
+
+## How to Add Blog Posts:
+
+1. Create a new HTML or Markdown file in this directory
+2. Name it with a URL-friendly slug (e.g., "crypto-scam-prevention-tips.html")
+3. The sitemap will automatically detect and include it
+
+## File Format:
+- Supported: .html, .md
+- Example: "preventing-crypto-scams.html"
+- URL becomes: https://ciphertracers.com/blog/preventing-crypto-scams
+
+## SEO Settings:
+- Priority: 0.7 (blog posts)
+- Change Frequency: monthly
+- Last Modified: Automatically detected from file timestamp
