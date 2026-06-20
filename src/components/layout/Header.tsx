@@ -49,8 +49,15 @@ export default function Header() {
       const { data } = await supabase
         .from("blog_posts")
         .select(`
-          *,
-          category:blog_categories(name, slug)
+          id,
+          title,
+          slug,
+          category_id,
+          blog_categories!inner (
+            id,
+            name,
+            slug
+          )
         `)
         .eq("status", "published")
         .lte("published_at", new Date().toISOString())
@@ -66,10 +73,9 @@ export default function Header() {
   }, []);
 
   const categories = blogPosts
-    .filter((post) => post.category)
-    .map((post) => post.category)
+    .map((post) => post.blog_categories)
     .filter((category, index, self) =>
-      index === self.findIndex((c) => c?.slug === category?.slug)
+      index === self.findIndex((c: any) => c?.slug === category?.slug)
     );
 
   // Search function

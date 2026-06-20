@@ -62,11 +62,12 @@ export function AnalyticsSection() {
         .select("*", { count: "exact", head: true })
         .gte("created_at", thirtyDaysAgo.toISOString());
 
-      // Clients
-      const { count: totalClients } = await supabase
+      // Clients - fetch all profiles and count client roles
+      const { data: allProfiles } = await supabase
         .from("profiles")
-        .select("*", { count: "exact", head: true })
-        .eq("role", "client");
+        .select("*");
+    
+      const totalClients = allProfiles?.filter(p => (p as any).role === "client").length || 0;
 
       // Blog
       const { count: blogPosts } = await supabase
@@ -102,7 +103,7 @@ export function AnalyticsSection() {
       setAnalytics({
         totalCases: totalCases || 0,
         activeCases: activeCases || 0,
-        totalClients: totalClients || 0,
+        totalClients: totalClients,
         blogPosts: blogPosts || 0,
         publishedPosts: publishedPosts || 0,
         newsletterSubscribers: newsletterSubscribers || 0,
