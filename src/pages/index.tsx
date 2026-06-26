@@ -9,15 +9,29 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
-import { PlayCircle, Star, TrendingUp, CheckCircle, Shield } from "lucide-react";
-import Link from "next/link";
 import { 
-  Shield, Search, Network, TrendingUp, Users, Building, 
-  Briefcase, FileText, ArrowRight, CheckCircle, Star,
-  Globe, Lock, Zap, Eye, AlertTriangle, Code, Database,
-  BarChart3, Cpu, Activity, Target, Award, Clock,
-  Mail, Phone, Send, Play, ChevronRight, Sparkles
+  ArrowRight, 
+  Shield, 
+  Search, 
+  FileText, 
+  Scale, 
+  TrendingUp, 
+  Users, 
+  CheckCircle, 
+  Star, 
+  PlayCircle,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Award,
+  Target,
+  Zap,
+  Lock,
+  Globe,
+  AlertCircle
 } from "lucide-react";
+import Link from "next/link";
 
 const featuredTestimonials = [
   {
