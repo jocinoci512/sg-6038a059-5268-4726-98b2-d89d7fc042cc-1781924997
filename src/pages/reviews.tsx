@@ -176,7 +176,6 @@ export default function ReviewsPage() {
                               loading="lazy"
                             ></iframe>
                           </div>
-                          <script src="https://player.vimeo.com/api/player.js"></script>
                         </div>
 
                         {/* Video Details */}
