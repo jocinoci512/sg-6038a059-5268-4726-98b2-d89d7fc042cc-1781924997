@@ -29,7 +29,17 @@ import {
   Zap,
   Lock,
   Globe,
-  AlertCircle
+  AlertCircle,
+  Activity,
+  Network,
+  Database,
+  ChevronRight,
+  Cpu,
+  Code,
+  Building,
+  Briefcase,
+  BarChart3,
+  Send
 } from "lucide-react";
 import Link from "next/link";
 
