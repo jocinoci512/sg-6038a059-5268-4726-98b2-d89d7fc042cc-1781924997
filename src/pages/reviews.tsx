@@ -9,44 +9,28 @@ import { Star, Quote, TrendingUp, Shield, Globe, CheckCircle } from "lucide-reac
 
 const videoTestimonials = [
   {
-    id: "996807223",
-    title: "Romance Scam Recovery - $127,000 Recovered",
-    location: "United States 🇺🇸",
-    amount: "$127,000",
-    description: "Sarah lost everything to a romance scammer. Our forensic team traced the transactions across multiple exchanges and helped recover her life savings.",
-    category: "Romance Scam"
+    id: "1008289093",
+    title: "Michael Chen - $850K BTC Recovery",
+    category: "Romance Scam",
+    location: "Singapore",
+    amount: "$850,000",
+    description: "After losing $850K in BTC to a romance scam, Cipherstracer traced the funds across multiple wallets and exchanges. Within 6 months, we recovered 85% of the stolen assets through exchange cooperation and law enforcement coordination."
   },
   {
-    id: "996807160",
-    title: "Investment Fraud Case - €89,000 Recovered",
-    location: "Germany 🇩🇪",
-    amount: "€89,000",
-    description: "Michael fell victim to a fake investment platform. We tracked the blockchain transactions and worked with authorities to freeze and return his funds.",
-    category: "Investment Fraud"
+    id: "1008289138",
+    title: "Sarah Thompson - Investment Fraud Case",
+    category: "Investment Fraud",
+    location: "London, UK",
+    amount: "£420,000",
+    description: "Sophisticated Ponzi scheme targeting UK investors. Cipherstracer's blockchain forensics identified the operators and traced £420K through multiple mixer services. Evidence led to criminal prosecution and asset recovery."
   },
   {
-    id: "996807100",
-    title: "Crypto Mining Scam - £54,000 Recovered",
-    location: "United Kingdom 🇬🇧",
-    amount: "£54,000",
-    description: "James invested in a fraudulent mining operation. Our intelligence tools exposed the scam network and led to successful fund recovery.",
-    category: "Mining Scam"
-  },
-  {
-    id: "996806916",
-    title: "Ponzi Scheme Recovery - $203,000 Recovered",
-    location: "Australia 🇦🇺",
-    amount: "$203,000",
-    description: "Emma was caught in an elaborate Ponzi scheme. Cipherstracer's blockchain forensics unraveled the complex network and recovered her investment.",
-    category: "Ponzi Scheme"
-  },
-  {
-    id: "996805094",
-    title: "Exit Scam Prevention - ¥12.5M Protected",
-    location: "Japan 🇯🇵",
-    amount: "¥12.5M",
-    description: "Kenji detected suspicious activity on his exchange account. Our threat intelligence team identified an exit scam in progress and protected his assets.",
-    category: "Exit Scam"
+    id: "1008289182",
+    title: "James Rodriguez - Employment Scam Recovery",
+    category: "Employment Scam",
+    location: "Miami, USA",
+    amount: "$125,000",
+    description: "Fake employment opportunity scam that stole $125K in crypto. Our investigation traced funds to Eastern European exchanges where accounts were frozen. Recovered 92% of stolen assets within 4 months."
   }
 ];
 
@@ -182,15 +166,17 @@ export default function ReviewsPage() {
                       <div className="grid md:grid-cols-5 gap-0">
                         {/* Video Player */}
                         <div className="md:col-span-3 bg-slate-900">
-                          <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                          <div className="relative aspect-video bg-slate-900 rounded-lg overflow-hidden">
                             <iframe
-                              src={`https://player.vimeo.com/video/${video.id}?badge=0&autopause=0&player_id=0&app_id=58479`}
-                              className="absolute top-0 left-0 w-full h-full"
+                              src={`https://player.vimeo.com/video/${video.id}?h=0&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479`}
+                              className="absolute inset-0 w-full h-full"
                               frameBorder="0"
                               allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
                               title={video.title}
-                            />
+                              loading="lazy"
+                            ></iframe>
                           </div>
+                          <script src="https://player.vimeo.com/api/player.js"></script>
                         </div>
 
                         {/* Video Details */}

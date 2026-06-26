@@ -12,16 +12,28 @@
       "source": "/(.*)",
       "headers": [
         {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
         },
         {
           "key": "Strict-Transport-Security",
           "value": "max-age=63072000; includeSubDomains; preload"
         },
         {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://vercel.live; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https:; frame-src 'self' https://vercel.live;"
+          "value": "frame-src 'self' https://player.vimeo.com https://vimeo.com; frame-ancestors 'self'; default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://player.vimeo.com https://f.vimeocdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; media-src 'self' https://player.vimeo.com https://vimeo.com https://*.vimeocdn.com; connect-src 'self' https://player.vimeo.com https://vimeo.com;"
         }
       ]
     },
@@ -36,5 +48,11 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    }
+  ]
 }
