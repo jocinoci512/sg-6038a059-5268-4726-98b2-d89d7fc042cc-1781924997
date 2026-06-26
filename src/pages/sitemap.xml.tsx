@@ -1,16 +1,35 @@
 import { GetServerSideProps } from "next";
 import { supabase } from "@/integrations/supabase/client";
 
-const DOMAIN = "https://cipherstracer.com";
+function generateSiteMap(blogPosts: any[]) {
+  const baseUrl = "https://cipherstracer.com";
+  
+  // Static pages with their priorities and change frequencies
+  const staticPages = [
+    { url: "", priority: "1.0", changefreq: "daily" }, // Homepage
+    { url: "/about", priority: "0.9", changefreq: "monthly" },
+    { url: "/services", priority: "0.9", changefreq: "monthly" },
+    { url: "/contact", priority: "0.8", changefreq: "monthly" },
+    { url: "/how-we-help", priority: "0.8", changefreq: "monthly" },
+    { url: "/how-we-help-individuals", priority: "0.8", changefreq: "monthly" },
+    { url: "/case-studies", priority: "0.8", changefreq: "weekly" },
+    { url: "/reviews", priority: "0.8", changefreq: "weekly" },
+    { url: "/report-scam", priority: "0.9", changefreq: "monthly" },
+    { url: "/resources", priority: "0.7", changefreq: "weekly" }
+  ];
 
-interface SitemapEntry {
-  loc: string;
-  lastmod?: string;
-  changefreq?: string;
-  priority?: string;
-}
+  // Blog categories
+  const blogCategories = [
+    "blockchain-investigation",
+    "cryptocurrency-security",
+    "fraud-prevention",
+    "asset-recovery-insights",
+    "blockchain-analytics",
+    "cybercrime-intelligence",
+    "digital-asset-protection",
+    "industry-news"
+  ];
 
-function generateSiteMap(entries: SitemapEntry[]): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
@@ -18,89 +37,60 @@ function generateSiteMap(entries: SitemapEntry[]): string {
         xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-${entries
-  .map((entry) => {
-    return `  <url>
-    <loc>${entry.loc}</loc>${entry.lastmod ? `
-    <lastmod>${entry.lastmod}</lastmod>` : ""}${entry.changefreq ? `
-    <changefreq>${entry.changefreq}</changefreq>` : ""}${entry.priority ? `
-    <priority>${entry.priority}</priority>` : ""}
+  ${staticPages
+    .map((page) => {
+      return `
+  <url>
+    <loc>${baseUrl}${page.url}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
   </url>`;
-  })
-  .join("\n")}
+    })
+    .join("")}
+  ${blogPosts
+    .map((post) => {
+      return `
+  <url>
+    <loc>${baseUrl}/blog/${post.slug}</loc>
+    <lastmod>${new Date(post.updated_at || post.created_at).toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>`;
+    })
+    .join("")}
+  ${blogCategories
+    .map((category) => {
+      return `
+  <url>
+    <loc>${baseUrl}/blog/category/${category}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>`;
+    })
+    .join("")}
 </urlset>`;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   try {
-    const entries: SitemapEntry[] = [];
-
-    // Static pages with high priority
-    const staticPages = [
-      { path: "", priority: "1.0", changefreq: "daily" },
-      { path: "/about", priority: "0.9", changefreq: "monthly" },
-      { path: "/services", priority: "0.9", changefreq: "monthly" },
-      { path: "/contact", priority: "0.8", changefreq: "monthly" },
-      { path: "/how-we-help", priority: "0.8", changefreq: "monthly" },
-      { path: "/how-we-help-individuals", priority: "0.8", changefreq: "monthly" },
-      { path: "/case-studies", priority: "0.8", changefreq: "weekly" },
-      { path: "/reviews", priority: "0.7", changefreq: "weekly" },
-      { path: "/report-scam", priority: "0.9", changefreq: "monthly" },
-      { path: "/resources", priority: "0.7", changefreq: "weekly" },
-    ];
-
-    staticPages.forEach((page) => {
-      entries.push({
-        loc: `${DOMAIN}${page.path}`,
-        lastmod: new Date().toISOString().split("T")[0],
-        changefreq: page.changefreq,
-        priority: page.priority,
-      });
-    });
-
-    // Fetch published blog posts
-    const { data: blogPosts } = await supabase
+    // Fetch all published blog posts
+    const { data: blogPosts, error } = await supabase
       .from("blog_posts")
-      .select("slug, updated_at, published_at")
+      .select("slug, created_at, updated_at")
       .eq("status", "published")
-      .lte("published_at", new Date().toISOString())
-      .order("published_at", { ascending: false });
+      .order("created_at", { ascending: false });
 
-    if (blogPosts && blogPosts.length > 0) {
-      blogPosts.forEach((post) => {
-        entries.push({
-          loc: `${DOMAIN}/blog/${post.slug}`,
-          lastmod: post.updated_at || post.published_at,
-          changefreq: "weekly",
-          priority: "0.7",
-        });
-      });
+    if (error) {
+      console.error("Error fetching blog posts for sitemap:", error);
     }
 
-    // Fetch blog categories
-    const { data: categories } = await supabase
-      .from("blog_categories")
-      .select("slug")
-      .eq("is_active", true);
-
-    if (categories && categories.length > 0) {
-      categories.forEach((category) => {
-        entries.push({
-          loc: `${DOMAIN}/blog/category/${category.slug}`,
-          lastmod: new Date().toISOString().split("T")[0],
-          changefreq: "weekly",
-          priority: "0.6",
-        });
-      });
-    }
-
-    const sitemap = generateSiteMap(entries);
+    // Generate the XML sitemap
+    const sitemap = generateSiteMap(blogPosts || []);
 
     res.setHeader("Content-Type", "text/xml");
-    res.setHeader(
-      "Cache-Control",
-      "public, s-maxage=3600, stale-while-revalidate=86400"
-    );
+    res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate");
     res.write(sitemap);
     res.end();
 
@@ -108,20 +98,12 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
       props: {},
     };
   } catch (error) {
-    console.error("Error generating sitemap:", error);
+    console.error("Sitemap generation error:", error);
     
-    // Return minimal sitemap on error
-    const fallbackSitemap = generateSiteMap([
-      {
-        loc: DOMAIN,
-        lastmod: new Date().toISOString().split("T")[0],
-        changefreq: "daily",
-        priority: "1.0",
-      },
-    ]);
-
+    // Return a basic sitemap on error
+    const basicSitemap = generateSiteMap([]);
     res.setHeader("Content-Type", "text/xml");
-    res.write(fallbackSitemap);
+    res.write(basicSitemap);
     res.end();
 
     return {
