@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
+import { PlayCircle, Star, TrendingUp, CheckCircle, Shield } from "lucide-react";
 import Link from "next/link";
 import { 
   Shield, Search, Network, TrendingUp, Users, Building, 
@@ -17,6 +18,33 @@ import {
   BarChart3, Cpu, Activity, Target, Award, Clock,
   Mail, Phone, Send, Play, ChevronRight, Sparkles
 } from "lucide-react";
+
+const featuredTestimonials = [
+  {
+    id: "996807223",
+    name: "Sarah M.",
+    location: "London, UK",
+    amount: "$450K",
+    recovered: "92%",
+    thumbnail: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400"
+  },
+  {
+    id: "996807160",
+    name: "David C.",
+    location: "Singapore",
+    amount: "$850K",
+    recovered: "85%",
+    thumbnail: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400"
+  },
+  {
+    id: "996807100",
+    name: "Maria R.",
+    location: "Miami, USA",
+    amount: "$320K",
+    recovered: "88%",
+    thumbnail: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400"
+  }
+];
 
 export default function HomePage() {
   const [formData, setFormData] = useState({
@@ -30,6 +58,7 @@ export default function HomePage() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [faqs, setFaqs] = useState<any[]>([]);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   // Load FAQs from database
   useEffect(() => {
@@ -815,6 +844,126 @@ export default function HomePage() {
                 <Button asChild size="lg">
                   <Link href="/reviews">
                     View All Testimonials <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </section>
+
+          {/* SECTION 9.5: Video Testimonials */}
+          <section className="py-20 bg-gradient-to-b from-white to-slate-50">
+            <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <Badge variant="outline" className="mb-4 bg-blue-50 text-blue-700 border-blue-200">
+                  Video Testimonials
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                  Real Clients, Real Results
+                </h2>
+                <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                  Watch authentic recovery stories from cryptocurrency fraud victims who trusted Cipherstracer to investigate and recover their stolen assets
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                {featuredTestimonials.map((video) => (
+                  <Card key={video.id} className="group hover:shadow-2xl transition-all duration-300 overflow-hidden border-slate-200">
+                    <CardContent className="p-0">
+                      {/* Video Player */}
+                      <div className="relative aspect-video bg-slate-900 overflow-hidden">
+                        {activeVideo === video.id ? (
+                          <iframe
+                            src={`https://player.vimeo.com/video/${video.id}?autoplay=1&title=0&byline=0&portrait=0&badge=0`}
+                            className="absolute inset-0 w-full h-full"
+                            frameBorder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            title={`${video.name} Recovery Testimonial`}
+                          ></iframe>
+                        ) : (
+                          <>
+                            <img 
+                              src={video.thumbnail} 
+                              alt={video.name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+                            <button
+                              onClick={() => setActiveVideo(video.id)}
+                              className="absolute inset-0 flex items-center justify-center group/play"
+                              aria-label={`Play ${video.name} testimonial`}
+                            >
+                              <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center group-hover/play:bg-blue-700 group-hover/play:scale-110 transition-all duration-300 shadow-2xl">
+                                <PlayCircle className="w-10 h-10 text-white" />
+                              </div>
+                            </button>
+                            
+                            {/* Recovery Badge */}
+                            <div className="absolute top-4 right-4">
+                              <Badge className="bg-green-500/90 text-white font-semibold">
+                                {video.recovered} Recovered
+                              </Badge>
+                            </div>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Video Info */}
+                      <div className="p-6">
+                        <div className="flex items-center justify-between mb-3">
+                          <div>
+                            <h3 className="font-bold text-lg text-slate-900">{video.name}</h3>
+                            <p className="text-sm text-slate-600">{video.location}</p>
+                          </div>
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                        </div>
+
+                        <div className="flex items-center justify-between text-sm pt-3 border-t border-slate-200">
+                          <span className="text-slate-600">Amount Recovered:</span>
+                          <span className="font-bold text-green-600">{video.amount}</span>
+                        </div>
+
+                        <div className="flex items-center gap-1 mt-4">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
+                          ))}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Stats Row */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <Card className="bg-gradient-to-br from-blue-50 to-white border-blue-200">
+                  <CardContent className="p-6 text-center">
+                    <TrendingUp className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+                    <div className="text-3xl font-bold text-slate-900 mb-1">88%</div>
+                    <div className="text-sm text-slate-600">Average Recovery Rate</div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-gradient-to-br from-green-50 to-white border-green-200">
+                  <CardContent className="p-6 text-center">
+                    <Shield className="w-8 h-8 text-green-600 mx-auto mb-3" />
+                    <div className="text-3xl font-bold text-slate-900 mb-1">500+</div>
+                    <div className="text-sm text-slate-600">Successful Cases</div>
+                  </CardContent>
+                </Card>
+                <Card className="bg-gradient-to-br from-emerald-50 to-white border-emerald-200">
+                  <CardContent className="p-6 text-center">
+                    <CheckCircle className="w-8 h-8 text-emerald-600 mx-auto mb-3" />
+                    <div className="text-3xl font-bold text-slate-900 mb-1">$3.2M+</div>
+                    <div className="text-sm text-slate-600">Total Recovered</div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* CTA */}
+              <div className="text-center">
+                <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+                  <Link href="/reviews">
+                    Watch All Testimonials
+                    <PlayCircle className="ml-2 w-5 h-5" />
                   </Link>
                 </Button>
               </div>
